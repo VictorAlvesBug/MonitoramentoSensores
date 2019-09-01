@@ -1,0 +1,39 @@
+﻿@model MonitoramentoSensores.Models.Sensor.SensorModel
+
+<div id="modal-cadastrar-editar-sensor-partial" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="titulo-modal" class="box-titulo"></h4>
+                <button type="button" class="close float-right" data-dismiss="modal"><i class="fa fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmSensor" method="post" action="/form" autocomplete="off">
+                    <div class="aviso aviso-danger"></div>
+                    <input type="hidden" id="codigoSensor" />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.Nome)
+                                <input id="nomeSensor" class="form-control" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(c => c.Endereco)
+                                <input id="enderecoSensor" class="form-control" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a id="btn-acao-modal" class="btn btn-blue">Salvar</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+

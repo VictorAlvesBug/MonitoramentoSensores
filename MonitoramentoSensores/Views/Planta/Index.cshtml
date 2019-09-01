@@ -1,0 +1,39 @@
+﻿@model List<MonitoramentoSensores.Models.Planta.PlantaModel>
+
+<main>
+    <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-titulo">
+                        Lista de Plantas
+                    </div>
+                    <div class="float-right">
+                        <a class="btn btn-blue js-modal-cadastrar-planta">Cadastrar</a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div id="lista-planta-partial">
+                        @Html.Partial("_ListaPlantaPartial", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_ModalCadastrarEditarPlantaPartial", new MonitoramentoSensores.Models.Planta.PlantaModel())
+
+</main>
+
+@section Styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Planta/planta.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/Padrao/modalpadrao.js"></script>
+    <script src="~/Scripts/Padrao/scripts.js"></script>
+    <script src="~/Scripts/Planta/planta.js"></script>
+}
+

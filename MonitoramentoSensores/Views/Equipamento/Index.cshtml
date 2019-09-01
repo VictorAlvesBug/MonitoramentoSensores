@@ -1,0 +1,53 @@
+﻿@model MonitoramentoSensores.Models.Area.AreaModel
+
+<main>
+    <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-titulo">
+                        <div class="titulo-planta">
+                            <span>Planta:</span><b class="titulo-planta-nome"> @Model.Planta.Nome</b>
+                        </div>
+                        <div class="titulo-area">
+                            <span>Área:</span><b class="titulo-area-nome"> @Model.Nome</b>
+                        </div>
+                        <div class="titulo-lista">
+                            Lista de Equipamentos
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        <a class="btn btn-blue js-modal-cadastrar-equipamento">Cadastrar</a>
+                    </div>
+                    <input type="hidden" id="codigoArea" value="@Model.Codigo" />
+                </div>
+                <div class="box-body">
+                    <div id="lista-equipamento-partial">
+                        @Html.Partial("_ListaEquipamentoPartial", Model.ListaEquipamento)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a class="btn btn-black btn-voltar" href="/Area/Index?codigoPlanta=@Model.CodigoPlanta">Voltar</a>
+        </div>
+    </div>
+
+    @Html.Partial("_ModalCadastrarEditarEquipamentoPartial", new MonitoramentoSensores.Models.Equipamento.EquipamentoModel())
+</main>
+
+@section Styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Equipamento/equipamento.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/Padrao/modalpadrao.js"></script>
+    <script src="~/Scripts/Padrao/scripts.js"></script>
+    <script src="~/Scripts/Equipamento/equipamento.js"></script>
+}
+

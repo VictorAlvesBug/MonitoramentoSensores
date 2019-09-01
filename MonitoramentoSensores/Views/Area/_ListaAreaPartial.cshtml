@@ -1,0 +1,37 @@
+﻿@model List<MonitoramentoSensores.Models.Area.AreaModel>
+
+@if (Model.Any())
+{
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var area in Model)
+                {
+                    <tr>
+                        <td>@area.Nome</td>
+                        <td class="text-center">
+                            <a class="fa fa-copy js-duplicar-area margin" data-codigo="@area.Codigo" data-nome="@area.Nome" data-toggle="tooltip" data-placement="top" title="" data-original-title="Duplicar"></a>
+                            <a class="fa fa-plus margin" href="/Equipamento/Index?codigoArea=@area.Codigo"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Visualizar"></a>
+                            <a class="fa fa-edit js-modal-editar-area margin" data-codigo="@area.Codigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
+                            <a class="fa fa-times js-excluir-area margin" data-codigo="@area.Codigo" data-nome="@area.Nome" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="nenhum-registro">
+        <i class="fa fa-times"></i>
+        Nenhuma área encontrada
+    </div>
+}

@@ -1,0 +1,142 @@
+﻿.alert {
+    margin: 30px;
+    position: fixed;
+    z-index: 999999999;
+    right: 0;
+    top: 0;
+}
+
+.aviso.aviso-danger {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    background-color: #fcf2f2;
+    border-left: 5px solid #dFb5b4;
+}
+
+.btn-close-float-message {
+    padding-left:20px;
+}
+
+body {
+    background: #edeff5;
+}
+
+.container {
+    width: 100%;
+    max-width: none;
+}
+
+.box {
+    background: #fff;
+    border-radius: 3px;
+    margin: 10px 20px;
+    padding: 20px 10px;
+    box-shadow: rgba(192,192,192,0.4) -2px -2px inset;
+}
+
+.box-header {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:100%;
+}
+
+.box-titulo {
+    font: normal 20px 'Hepta Slab';
+    text-transform: uppercase;
+}
+
+.box-subtitulo {
+    font: normal 16px 'Hepta Slab';
+    text-transform: uppercase;
+}
+
+.nenhum-registro {
+    color: red;
+    font: normal 14px 'Hepta Slab';
+    text-transform: uppercase;
+    margin-left: 20px;
+}
+
+.btn {
+    text-transform: uppercase;
+    color: #000;
+    font: normal 14px 'Hepta Slab';
+}
+
+.btn-green {
+    border: 2px solid green;
+    background-color: transparent;
+    color: #000 !important;
+    border-radius: 0;
+    transition: background 400ms;
+}
+
+    .btn-green:hover {
+        background-color: green;
+        color: #fff !important;
+        border-radius: 0;
+    }
+
+.btn-blue {
+    border: 2px solid #0066b4;
+    background-color: transparent;
+    color: #000 !important;
+    border-radius: 0;
+    transition: background 400ms;
+}
+
+    .btn-blue:hover {
+        background-color: #0066b4;
+        color: #fff !important;
+        border-radius: 0;
+    }
+
+.btn-black {
+    border: 2px solid black;
+    background-color: transparent;
+    color: #000 !important;
+    border-radius: 0;
+    transition: background 400ms;
+}
+
+    .btn-black:hover {
+        background-color: black;
+        color: #fff !important;
+        border-radius: 0;
+    }
+
+.close {
+    font-size: 14px;
+    padding: auto 5px auto;
+    transform: rotate(0deg);
+    transition: all linear 0.2s;
+}
+
+.modal-header {
+    padding-bottom: 10px;
+}
+
+input.form-control, select.form-control {
+    border-radius: 0px;
+    font-size: 12px;
+}
+
+a {
+    color: #0558b5 !important;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.margin {
+    margin: 2px;
+}
+
+.btn-voltar {
+    margin-top:20px;
+}

@@ -1,0 +1,74 @@
+﻿
+.background {
+    /*height: 786px;*/
+    width: 100%;
+    background-image: url(~/Imagens/backgroundLogin.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    justify-content: center;
+    align-items:center;
+}
+
+.login-background {
+    /*height: 360px;*/
+    width: 340px;
+    background-color: rgba(255, 255, 255, .64);
+    margin:  30px auto;
+    padding: 40px 40px;
+    border-radius: 5%;
+    box-shadow: rgba(192,192,192,0.4) -2px -2px inset;
+}
+
+.login-titulo {
+    font-family: Bahnschrift, 'Courier New', Courier, monospace;
+    color: rgb(46, 59, 65);
+    text-align: center;
+}
+
+.login-input {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    border-radius: 15px;
+    height: 35px;
+    width: 205px;
+    text-align: center;
+    font-size: 15px;
+    font-family: Bahnschrift, 'Courier New', Courier, monospace;
+    background-color: white;
+}
+
+.login-remember-password {
+    margin: 15px 5px 0px 145px;
+    height: 12px;
+    width: 12px;
+    float: left;
+}
+
+.login-remember-text {
+    padding-top: 5px;
+    font-size: 10px;
+    color: #46606C;
+    font-family: Bahnschrift, 'Courier New', Courier, monospace;
+}
+
+.btn-enter {
+    height: 30px;
+    width: 150px;
+    margin-top: 40px;
+    color: #46606C;
+    background-color: rgb(83, 184, 235);
+    border-radius: 12px;
+    border: 1px solid grey;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Bahnschrift, 'Courier New', Courier, monospace;
+}
+
+.login-forgot-password {
+    font-size: 10px;
+    color: #46606C;
+    font-family: Bahnschrift, 'Courier New', Courier, monospace;
+    text-align: center;
+}

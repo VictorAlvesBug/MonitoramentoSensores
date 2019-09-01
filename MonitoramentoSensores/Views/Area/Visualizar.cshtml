@@ -1,0 +1,102 @@
+﻿@model MonitoramentoSensores.Models.Planta.PlantaModel
+
+<main>
+    <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-titulo">
+                        Planta &nbsp;<b>@Model.Nome</b>
+                    </div>
+                </div>
+                <div class="box-body">
+                    @if (Model.PaginacaoArea.Lista.Any())
+                    {
+                        for (int i = 0; i < Model.PaginacaoArea.Lista.Count; i += 3)
+                        {
+                            <div class="row">
+                                @for (int j = i; j < Math.Min(i + 3, Model.PaginacaoArea.Lista.Count); j++)
+                                {
+                                    var area = Model.PaginacaoArea.Lista[j];
+
+                                    <div class="col-md-4">
+                                    <div class="area-content">
+                                        <div class="area-header">
+                                            <div class="box-subtitulo">
+                                                Área <b>@area.Nome</b>
+                                            </div>
+                                        </div>
+                                        <div class="area-body">
+                                            @if (area.ListaEquipamento.Any())
+                                            {
+                                                foreach (var equipamento in area.ListaEquipamento)
+                                                {
+                                                    <div class="equipamento-content">
+                                                        <div class="equipamento-header">
+                                                            @equipamento.Nome
+                                                        </div>
+                                                        <div class="equipamento-body">
+                                                            @*@if (equipamento.ListaSensor.Any())
+                                                            {
+                                                                foreach (var sensor in equipamento.ListaSensor)
+                                                                {
+                                                                    <div class="sensor">
+                                                                        @sensor.Nome (@sensor.Endereco)
+                                                                    </div>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="nenhum-registro">
+                                                                    <i class="fa fa-times"></i>
+                                                                    Nenhum sensor encontrado
+                                                                </div>
+                                                            }*@
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="nenhum-registro">
+                                                    <i class="fa fa-times"></i>
+                                                    Nenhuma equipamento encontrada
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="nenhum-registro">
+                            <i class="fa fa-times"></i>
+                            Nenhuma área encontrada
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a class="btn btn-black btn-voltar" href="/Planta/Index">Voltar</a>
+        </div>
+    </div>
+</main>
+
+@section Styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Area/area.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/Padrao/modalpadrao.js"></script>
+    <script src="~/Scripts/Padrao/scripts.js"></script>
+    <script src="~/Scripts/Area/area.js"></script>
+}
