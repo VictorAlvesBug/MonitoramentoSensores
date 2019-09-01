@@ -1,0 +1,88 @@
+﻿.area-content {
+    border: 1px solid #0066b4;
+    border-radius: 15px;
+    padding: 20px 10px;
+    margin: 10px auto;
+    height: 300px;
+    overflow: auto;
+}
+
+.area-body {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+}
+
+.row-equipamento {
+    width: 100%;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0px;
+}
+
+.equipamento-content {
+    width: 100%;
+    height: 40px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.equipamento-status {
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    background-color: limegreen;
+    border: 1px solid #000;
+    border-radius: 50%;
+}
+
+    .equipamento-status:hover {
+        cursor: pointer;
+    }
+
+.equipamento-detalhes {
+    display: none;
+    width: 200px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+/*.equipamento-content:hover .equipamento-detalhes {
+        display: block;
+    }*/
+
+.sensor {
+    display: flex;
+    justify-content: center;
+}
+
+.box-titulo {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*MODAL EQUIPAMENTO DETALHES*/
+
+.status {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    display:block;
+}
+
+    .status.status-estavel {
+        background-color: limegreen;
+    }
+
+    .status.status-incomum {
+        background-color: yellow;
+    }
+
+    .status.status-critico {
+        background-color: red;
+    }

@@ -23,6 +23,8 @@ namespace MonitoramentoSensores.Models.Sensor
         [Required(ErrorMessage = "Preencha o campo do nome")]
         public string Nome { get; set; }
 
+        public Status Status { get; set; }
+
         public int Ordem { get; set; }
 
         public bool Ativo { get; set; }

@@ -1,5 +1,18 @@
 ﻿$(function () {
 
+    $(document).on('keydown', '.login-nome', function (e) {
+        $('.login-senha').val('');
+        if (e.keyCode == 13) {
+            $('.login-senha').focus();
+        }
+    });
+
+    $(document).on('keydown', '.login-senha', function (e) {
+        if (e.keyCode == 13) {
+            $('.btn-enter').click();
+        }
+    });
+
     $(document).on('click', '.btn-enter', function () {
         var form = $('#frmLogin');
         var nome = $('.login-nome').val();

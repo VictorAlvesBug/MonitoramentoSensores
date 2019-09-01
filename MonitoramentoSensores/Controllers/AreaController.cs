@@ -142,31 +142,5 @@ namespace MonitoramentoSensores.Controllers
                 Mensagem = "Área duplicada com sucesso"
             });
         }
-
-        public async Task<ActionResult> Visualizar(int codigoPlanta)
-        {
-            var planta = new PlantaModel(await _plantaBLL.RetornarPlantaAsync(codigoPlanta));
-            var paginacaoAreaMod = await _areaBLL.ListarAreaPaginadaAsync(codigoPlanta, pagina: 1, itensPorPagina: _itensPorPagina);
-            planta.PaginacaoArea = new PaginacaoModel<AreaModel> {
-                Pagina = paginacaoAreaMod.Pagina,
-                QtdePaginas = paginacaoAreaMod.QtdePaginas,
-                ItensPorPagina = paginacaoAreaMod.ItensPorPagina,
-                Lista = paginacaoAreaMod.Lista.Select(c => new AreaModel(c)).ToList()
-            };
-
-            foreach (var area in planta.PaginacaoArea.Lista)
-            {
-                area.ListaEquipamento = (area.ListaEquipamento == null ? new List<EquipamentoModel>() : area.ListaEquipamento);
-                area.ListaEquipamento = (await _equipamentoBLL.ListarEquipamentoAsync(area.Codigo)).Select(v => new EquipamentoModel(v)).ToList();
-
-                foreach (var equipamento in area.ListaEquipamento)
-                {
-                    equipamento.ListaSensor = (equipamento.ListaSensor == null ? new List<SensorModel>() : equipamento.ListaSensor);
-                    equipamento.ListaSensor = (await _sensorBLL.ListarSensorAsync(equipamento.Codigo)).Select(s => new SensorModel(s)).ToList();
-                }
-            }
-
-            return View("Visualizar", planta);
-        }
     }
 }

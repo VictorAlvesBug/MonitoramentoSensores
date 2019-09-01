@@ -177,6 +177,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Content\Equipamento\equipamento.css" />
+    <Content Include="Content\Visualizacao\visualizacao.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Imagens\backgroundLogin.png" />
@@ -254,6 +255,7 @@
     <Content Include="Scripts\Planta\planta.js" />
     <Content Include="Scripts\Sensor\sensor.js" />
     <Content Include="Scripts\Equipamento\equipamento.js" />
+    <Content Include="Scripts\Visualizacao\visualizacao.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
@@ -265,6 +267,7 @@
     <Compile Include="Controllers\PlantaController.cs" />
     <Compile Include="Controllers\SensorController.cs" />
     <Compile Include="Controllers\EquipamentoController.cs" />
+    <Compile Include="Controllers\VisualizacaoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -305,7 +308,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\README.md" />
-    <Content Include="Views\Area\Visualizar.cshtml" />
+    <Content Include="Views\Visualizacao\Visualizar.cshtml" />
     <Content Include="Views\Area\Index.cshtml" />
     <Content Include="Views\Area\_ModalCadastrarEditarAreaPartial.cshtml" />
     <Content Include="Views\Area\_ListaAreaPartial.cshtml" />
@@ -316,6 +319,7 @@
     <Content Include="Views\Sensor\_ModalCadastrarEditarSensorPartial.cshtml" />
     <Content Include="Views\Sensor\_ListaSensorPartial.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Visualizacao\_ModalEquipamentoDetalhesPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

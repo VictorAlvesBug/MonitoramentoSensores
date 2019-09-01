@@ -77,7 +77,7 @@
                 if (retorno.Sucesso) {
                     MensagemSucesso(retorno.Mensagem);
                     renderizarListaArea();
-                $('#modal-cadastrar-editar-area-partial').modal('hide');
+                    $('#modal-cadastrar-editar-area-partial').modal('hide');
                 }
                 else {
                     aplicaErro(retorno.Mensagem, $('#frmArea'));
