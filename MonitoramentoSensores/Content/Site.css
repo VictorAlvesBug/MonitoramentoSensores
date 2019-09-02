@@ -49,6 +49,7 @@ body {
 .box-titulo {
     font: normal 20px 'Hepta Slab';
     text-transform: uppercase;
+    display:flex;
 }
 
 .box-subtitulo {
@@ -66,12 +67,12 @@ body {
 .btn {
     text-transform: uppercase;
     color: #000;
+    background-color: #fff;
     font: normal 14px 'Hepta Slab';
 }
 
 .btn-green {
     border: 2px solid green;
-    background-color: transparent;
     color: #000 !important;
     border-radius: 0;
     transition: background 400ms;
@@ -85,7 +86,6 @@ body {
 
 .btn-blue {
     border: 2px solid #0066b4;
-    background-color: transparent;
     color: #000 !important;
     border-radius: 0;
     transition: background 400ms;
@@ -99,7 +99,6 @@ body {
 
 .btn-black {
     border: 2px solid black;
-    background-color: transparent;
     color: #000 !important;
     border-radius: 0;
     transition: background 400ms;

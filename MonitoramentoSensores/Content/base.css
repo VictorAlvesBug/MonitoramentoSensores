@@ -8,25 +8,89 @@
     background-image: linear-gradient(to right, #5bc3ed, #0066b4);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 120px;
     width: 100%;
-    padding: 15px 0px 0px 0px;
+    padding: 5px 10px;
     background-position: center;
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
 }
 
-    .header .header-img {
-        height: 70px;
-        width: auto;
-        padding-left: 15px;
+    .header .header-logo {
+        display: grid;
+        align-items: center;
     }
 
-    .header .nome-sistema {
-        font-size: 12px;
+    .header-logo .logo {
+        height: 30px;
+        width: auto;
+        margin: auto;
+        display: block;
+    }
+
+    .header-logo .nome-sistema {
+        font-size: 10px;
         font-family: Bahnschrift, 'Courier New', Courier, monospace;
         color: #46606C;
-        padding-left: 20px;
         margin: 0;
     }
+
+.btn-dropdown {
+    color: #fff;
+    padding: 10px;
+    padding-right: 25px;
+    font: normal 12px 'Hepta Slab';
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+.login-dropdown {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #fff;
+    align-self: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        width:100%;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            text-decoration-color: #fff;
+        }
+
+
+.login-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.login-dropdown:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg);
+    position: absolute;
+    display: block;
+    right: 8px;
+    top: 12px;
+}
 
 .footer {
     border-top: solid #46606C 5px;
@@ -57,66 +121,4 @@
 .footer-copyright {
     font-size: 12px;
     font-weight: normal;
-}
-
-.nav-bar {
-    background-color: #f3f1f2;
-    min-width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.btn-dropdown {
-    color: #0066b4;
-    padding: 10px;
-    padding-right: 25px;
-    font: normal 12px 'Hepta Slab';
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.login-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-    .dropdown-content a {
-        color: #f1f1f1;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        width:100%;
-    }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-            text-decoration-color: #fff;
-        }
-
-
-.login-dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.login-dropdown:after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-right: 2px solid #0066b4;
-    border-bottom: 2px solid #0066b4;
-    transform: rotate(45deg);
-    position: absolute;
-    display: block;
-    right: 8px;
-    top: 12px;
 }

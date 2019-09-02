@@ -1,0 +1,75 @@
+﻿.paginacao {
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.pagina, .pagina-reticencias {
+    width: 30px;
+    height: 30px;
+    background-color: #0066b4;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+.pagina-reticencias {
+    background-color: transparent;
+    cursor: default;
+}
+
+    .pagina-reticencias .numero {
+        color: #0066b4;
+        font-size: 18px;
+    }
+
+.pagina.is-active {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-top: -10px;
+}
+
+.pagina .numero {
+    color: #fff;
+    font-size: 14px;
+}
+
+.pagina.is-active .numero {
+    font-size: 20px;
+}
+
+.pagina-anterior, .pagina-posterior {
+    display: flex;
+    justify-content: center;
+}
+
+    .pagina-anterior:after, .pagina-posterior:after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        position: relative;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+    }
+
+    .pagina-anterior:after {
+        right: calc(50% - 17px);
+        transform: rotate(-135deg);
+    }
+
+    .pagina-posterior:after {
+        left: calc(50% - 17px);
+        transform: rotate(45deg);
+    }

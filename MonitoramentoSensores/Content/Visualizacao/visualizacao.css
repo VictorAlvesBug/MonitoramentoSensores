@@ -1,25 +1,23 @@
 ﻿.area-content {
     border: 1px solid #0066b4;
-    border-radius: 15px;
-    padding: 20px 10px;
+    border-radius: 5px;
+    padding: 5px 10px;
     margin: 10px auto;
-    height: 300px;
-    overflow: auto;
+    height: 160px;
+    /*overflow: auto;*/
+}
+
+.area-header {
+    position:relative;
 }
 
 .area-body {
     margin-top: 10px;
-    display: flex;
+    display: block;
     justify-content: space-between;
     min-width: 100%;
-}
-
-.row-equipamento {
-    width: 100%;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .equipamento-content {
@@ -65,6 +63,40 @@
     justify-content: space-between;
 }
 
+/* SCROLLBAR */
+.scrollbar {
+    background-color: #F5F5F5;
+    /*float: left;*/
+    /*height: 300px;*/
+    /*margin-bottom: 25px;*/
+    margin-left: 22px;
+    /*margin-top: 40px;*/
+    /*width: 65px;*/
+    overflow-y: auto;
+}
+
+.force-overflow {
+    /*min-height: 450px;*/
+}
+
+#style-1::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+    border-radius:5px;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius:5px;
+}
+
+#style-1::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius:5px;
+}
+/* SCROLLBAR */
+
 /*MODAL EQUIPAMENTO DETALHES*/
 
 .status {
@@ -72,7 +104,7 @@
     height: 30px;
     border: 1px solid #aaa;
     border-radius: 50%;
-    display:block;
+    display: block;
 }
 
     .status.status-estavel {

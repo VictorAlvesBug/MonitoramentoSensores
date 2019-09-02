@@ -1,0 +1,90 @@
+﻿@model MonitoramentoSensores.Models.Planta.PlantaModel
+
+<div class="box-header">
+    <div class="box-titulo">
+        Planta &nbsp;<b>@Model.Nome</b>
+        <input type="hidden" id="codigoPlanta" value="@Model.Codigo" />
+        <input type="hidden" id="paginaAtual" value="@Model.PaginacaoArea.Pagina" />
+        <input type="hidden" id="qtdePaginas" value="@Model.PaginacaoArea.QtdePaginas" />
+    </div>
+</div>
+<div class="box-body">
+    @if (Model.PaginacaoArea.Lista.Any())
+    {
+        for (int indiceGrupoArea = 0; indiceGrupoArea < Model.PaginacaoArea.Lista.Count; indiceGrupoArea += 3)
+        {
+            <div class="row">
+                @for (int indiceItemArea = indiceGrupoArea; indiceItemArea < Math.Min(indiceGrupoArea + 3, Model.PaginacaoArea.Lista.Count); indiceItemArea++)
+                {
+                    var area = Model.PaginacaoArea.Lista[indiceItemArea];
+
+                    <div class="col-md-4">
+                        <div class="area-content scrollbar" id="style-1">
+                            <div class="force-overflow"></div>
+                            <div class="area-header">
+                                <div class="box-subtitulo text-center">
+                                    Área <b>@area.Nome</b>
+                                </div>
+                            </div>
+                            <div class="area-body">
+                                @if (area.ListaEquipamento.Any())
+                                {
+                                    for (int indiceGrupoEquipamento = 0; indiceGrupoEquipamento < area.ListaEquipamento.Count(); indiceGrupoEquipamento += 3)
+                                    {
+                                        <div class="row">
+                                            @for (int indiceItemEquipamento = indiceGrupoEquipamento; indiceItemEquipamento < Math.Min(indiceGrupoEquipamento + 3, area.ListaEquipamento.Count()); indiceItemEquipamento++)
+                                            {
+                                                var equipamento = area.ListaEquipamento[indiceItemEquipamento];
+
+                                                <div class="col-md-4">
+                                                    <div class="equipamento-content">
+                                                        <div class="equipamento-status js-modal-equipamento-detalhes" data-codigo-equipamento="@equipamento.Codigo" data-toggle="tooltip" title="@equipamento.Nome" data-placement="top">
+                                                        </div>
+                                                        @*<div class="equipamento-detalhes">
+                                                                @if (equipamento.ListaSensor.Any())
+                                                                    {
+                                                                        foreach (var sensor in equipamento.ListaSensor)
+                                                                        {
+                                                                            <div class="sensor">
+                                                                                @sensor.Nome (@sensor.Endereco)
+                                                                            </div>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="nenhum-registro">
+                                                                            <i class="fa fa-times"></i>
+                                                                            Nenhum sensor encontrado
+                                                                        </div>
+                                                                    }
+                                                            </div>*@
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="nenhum-registro">
+                                        <i class="fa fa-times"></i>
+                                        Nenhum equipamento encontrado
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <div class="nenhum-registro">
+            <i class="fa fa-times"></i>
+            Nenhuma área encontrada
+        </div>
+    }
+
+</div>
+@Trinity.Paginacao(Model.PaginacaoArea.Pagina, Model.PaginacaoArea.QtdePaginas)

@@ -75,7 +75,7 @@ namespace MonitoramentoSensores.Controllers
             return Json(new
             {
                 Sucesso = true,
-                Mensagem = "Equipamento cadastrada com sucesso"
+                Mensagem = "Equipamento cadastrado com sucesso"
             });
         }
 
@@ -109,7 +109,7 @@ namespace MonitoramentoSensores.Controllers
             return Json(new
             {
                 Sucesso = true,
-                Mensagem = "Equipamento editada com sucesso"
+                Mensagem = "Equipamento editado com sucesso"
             });
         }
 
@@ -122,7 +122,7 @@ namespace MonitoramentoSensores.Controllers
                 return Json(new
                 {
                     Sucesso = false,
-                    Mensagem = "Exclusão negada pois a equipamento possui sensores vinculados"
+                    Mensagem = "Exclusão negada pois o equipamento possui sensores vinculados"
                 });
 
             if (!await _equipamentoBLL.ExcluirEquipamentoAsync(codigo))
@@ -135,7 +135,7 @@ namespace MonitoramentoSensores.Controllers
             return Json(new
             {
                 Sucesso = true,
-                Mensagem = "Equipamento excluída com sucesso"
+                Mensagem = "Equipamento excluído com sucesso"
             });
         }
 
@@ -152,7 +152,7 @@ namespace MonitoramentoSensores.Controllers
             return Json(new
             {
                 Sucesso = true,
-                Mensagem = "Equipamento duplicada com sucesso"
+                Mensagem = "Equipamento duplicado com sucesso"
             });
         }
     }

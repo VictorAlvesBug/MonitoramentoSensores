@@ -17,15 +17,12 @@
     <div class="container body-content">
         <div class="row">
             <div class="header">
-                <img class="header-img" src="~/Imagens/Braskem.png">
-                <p class="nome-sistema"> Real time monitoring system. </p>
-            </div>
-            @if (Session["NomeUsuario"] != null)
-            {
-                <div class="nav-bar">
-                    <div class="box-titulo">
-
-                    </div>
+                <div class="header-logo">
+                    <img class="logo" src="~/Imagens/Braskem.png">
+                    <p class="nome-sistema"> Real time monitoring system. </p>
+                </div>
+                @if (Session["NomeUsuario"] != null)
+                {
                     <div class="login-dropdown">
                         <button class="btn-dropdown">Olá, @Session["NomeUsuario"].ToString()</button>
                         <div class="dropdown-content">
@@ -34,8 +31,9 @@
                             <a class="dropdown-content-item" href="/Login/Sair">Sair</a>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
+
         </div>
         @RenderBody()
         <div class="row">

@@ -1,0 +1,57 @@
+﻿@helper Paginacao(int pagina, int qtdePaginas)
+{
+    <div class="paginacao">
+        <div class="pagina pagina-anterior" data-pagina="@(pagina-1)"></div>
+        <div class="pagina @(pagina==1 ? "is-active" : "")" data-pagina="1"><span class="numero">1</span></div>
+
+        @if (pagina <= 4)
+        {
+            var limiteMinimo = 2;
+            var limiteMaximo = Math.Min(6, Math.Max(qtdePaginas - 2, 1));
+
+            for (int indice = limiteMinimo; indice <= limiteMaximo; indice++)
+            {
+                if (indice == limiteMaximo)
+                {
+                    <div class="pagina-reticencias"><span class="numero">...</span></div>
+                }
+                else
+                {
+                    <div class="pagina @(indice==pagina ? "is-active" : "")" data-pagina="@indice"><span class="numero">@indice</span></div>
+                }
+            }
+        }
+        else if (pagina >= qtdePaginas - 3)
+        {
+            var limiteMinimo = Math.Max(qtdePaginas - 5, Math.Min(3, 1));
+            var limiteMaximo = Math.Max(qtdePaginas - 1, 1);
+
+            for (int indice = limiteMinimo; indice <= limiteMaximo; indice++)
+            {
+                if (indice == limiteMinimo)
+                {
+                    <div class="pagina-reticencias"><span class="numero">...</span></div>
+                }
+                else
+                {
+                    <div class="pagina @(indice==pagina ? "is-active" : "")" data-pagina="@indice"><span class="numero">@indice</span></div>
+                }
+            }
+        }
+        else
+        {
+            <div class="pagina-reticencias"><span class="numero">...</span></div>
+
+            for (int indice = Math.Max(pagina - 1, 1); indice <= Math.Min(pagina + 1, qtdePaginas); indice++)
+            {
+                <div class="pagina @(indice==pagina ? "is-active" : "")" data-pagina="@indice"><span class="numero">@indice</span></div>
+            }
+
+            <div class="pagina-reticencias"><span class="numero">...</span></div>
+        }
+
+        <div class="pagina @(pagina==qtdePaginas  ? "is-active" : "")" data-pagina="@qtdePaginas"><span class="numero">@qtdePaginas</span></div>
+        <div class="pagina pagina-posterior" data-pagina="@(pagina+1)"></div>
+
+    </div>
+}

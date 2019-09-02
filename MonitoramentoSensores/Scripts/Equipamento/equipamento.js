@@ -94,7 +94,7 @@
         var codigo = $(this).data('codigo');
         var nome = $(this).data('nome');
 
-        ExibirModalConfirmacao("Excluir Equipamento", `Deseja realmente excluir a equipamento <b>${nome}</b>`,
+        ExibirModalConfirmacao("Excluir Equipamento", `Deseja realmente excluir o equipamento <b>${nome}</b>`,
             function () {
                 $.ajax({
                     type: 'POST',
@@ -120,7 +120,7 @@
         var codigo = $(this).data('codigo');
         var nome = $(this).data('nome');
 
-        ExibirModalConfirmacao("Duplicar Equipamento", `Deseja realmente duplicar a equipamento <b>${nome}</b>`,
+        ExibirModalConfirmacao("Duplicar Equipamento", `Deseja realmente duplicar o equipamento <b>${nome}</b>`,
             function () {
                 $.ajax({
                     type: 'POST',
