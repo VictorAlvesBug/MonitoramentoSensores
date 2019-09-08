@@ -14,6 +14,8 @@ namespace MonitoramentoSensores.DAL.Interfaces
         Task<bool> EditarEquipamentoAsync(EquipamentoMOD equipamento);
         Task<bool> ExcluirEquipamentoAsync(int codigo);
         Task<List<EquipamentoMOD>> ListarEquipamentoAsync(int codigoArea);
+        Task<List<EquipamentoMOD>> ListarEquipamentoAsync(int codigoArea, int pagina, int itensPorPagina);
         Task<int> CadastrarEquipamentoRetornarCodigoAsync(EquipamentoMOD equipamento);
+        Task<int> RetornarQuantidadePaginaEquipamentoAsync(int codigoArea, int itensPorPagina);
     }
 }

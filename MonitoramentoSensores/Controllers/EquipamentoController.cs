@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using MonitoramentoSensores.Models;
 
 namespace MonitoramentoSensores.Controllers
 {
@@ -16,6 +17,7 @@ namespace MonitoramentoSensores.Controllers
         private IAreaBLL _areaBLL;
         private IEquipamentoBLL _equipamentoBLL;
         private ISensorBLL _sensorBLL;
+        private int _itensPorPagina = 5;
 
         public EquipamentoController(IPlantaBLL plantaBLL, IAreaBLL areaBLL, IEquipamentoBLL equipamentoBLL, ISensorBLL sensorBLL)
         {
@@ -25,15 +27,23 @@ namespace MonitoramentoSensores.Controllers
             _sensorBLL = sensorBLL;
         }
 
-        public async Task<ActionResult> Index(int codigoArea)
+        public async Task<ActionResult> Index(int codigoArea, int pagina = 1)
         {
             var area = new AreaModel(await _areaBLL.RetornarAreaAsync(codigoArea));
 
             area.Planta = new PlantaModel(await _plantaBLL.RetornarPlantaAsync(area.CodigoPlanta));
 
-            area.ListaEquipamento = (await _equipamentoBLL.ListarEquipamentoAsync(codigoArea)).Select(v => new EquipamentoModel(v)).ToList();
+            var paginacaoEquipamentoMod = await _equipamentoBLL.ListarEquipamentoPaginadoAsync(codigoArea, pagina, _itensPorPagina);
 
-            foreach (var equipamento in area.ListaEquipamento)
+            area.PaginacaoEquipamento = new PaginacaoModel<EquipamentoModel>
+            {
+                Pagina = paginacaoEquipamentoMod.Pagina,
+                QtdePaginas = paginacaoEquipamentoMod.QtdePaginas,
+                ItensPorPagina = paginacaoEquipamentoMod.ItensPorPagina,
+                Lista = paginacaoEquipamentoMod.Lista.Select(e => new EquipamentoModel(e)).ToList()
+            };
+
+            foreach (var equipamento in area.PaginacaoEquipamento.Lista)
             {
                 equipamento.ListaSensor = (equipamento.ListaSensor == null ? new List<SensorModel>() : equipamento.ListaSensor);
                 equipamento.ListaSensor = (await _sensorBLL.ListarSensorAsync(equipamento.Codigo)).Select(s => new SensorModel(s)).ToList();
@@ -42,17 +52,25 @@ namespace MonitoramentoSensores.Controllers
             return View(area);
         }
 
-        public async Task<ActionResult> RenderizarListaEquipamento(int codigoArea)
+        public async Task<ActionResult> RenderizarListaEquipamento(int codigoArea, int pagina = 1)
         {
-            var listaEquipamento = (await _equipamentoBLL.ListarEquipamentoAsync(codigoArea)).Select(v => new EquipamentoModel(v)).ToList();
+            var paginacaoEquipamentoMod = await _equipamentoBLL.ListarEquipamentoPaginadoAsync(codigoArea, pagina, _itensPorPagina);
 
-            foreach (var equipamento in listaEquipamento)
+            var paginacaoEquipamento = new PaginacaoModel<EquipamentoModel>
+            {
+                Pagina = paginacaoEquipamentoMod.Pagina,
+                QtdePaginas = paginacaoEquipamentoMod.QtdePaginas,
+                ItensPorPagina = paginacaoEquipamentoMod.ItensPorPagina,
+                Lista = paginacaoEquipamentoMod.Lista.Select(e => new EquipamentoModel(e)).ToList()
+            };
+            
+            foreach (var equipamento in paginacaoEquipamento.Lista)
             {
                 equipamento.ListaSensor = (equipamento.ListaSensor == null ? new List<SensorModel>() : equipamento.ListaSensor);
                 equipamento.ListaSensor = (await _sensorBLL.ListarSensorAsync(equipamento.Codigo)).Select(s => new SensorModel(s)).ToList();
             }
 
-            return PartialView("_ListaEquipamentoPartial", listaEquipamento);
+            return PartialView("_ListaEquipamentoPartial", paginacaoEquipamento);
         }
 
         [HttpPost]

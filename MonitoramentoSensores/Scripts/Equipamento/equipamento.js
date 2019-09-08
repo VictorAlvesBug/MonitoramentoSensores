@@ -11,7 +11,7 @@
 
         $('.aviso').hide();
 
-        $('#modal-cadastrar-editar-equipamento-partial').modal('show');
+        abrirModal('#modal-cadastrar-editar-equipamento-partial');
     });
 
     $(document).on('click', '.js-cadastrar-equipamento', function () {
@@ -26,7 +26,7 @@
                 if (retorno.Sucesso) {
                     MensagemSucesso(retorno.Mensagem);
                     renderizarListaEquipamento();
-                $('#modal-cadastrar-editar-equipamento-partial').modal('hide');
+                    fecharModal('#modal-cadastrar-editar-equipamento-partial');
                 }
                 else {
                     aplicaErro(retorno.Mensagem, $('#frmEquipamento'));
@@ -56,7 +56,7 @@
 
                 $('.aviso').hide();
 
-                $('#modal-cadastrar-editar-equipamento-partial').modal('show');
+                abrirModal('#modal-cadastrar-editar-equipamento-partial');
             },
             error: function () {
                 MensagemErroPersonalizada('Ocorreu um erro ao retornar equipamento');
@@ -77,7 +77,7 @@
                 if (retorno.Sucesso) {
                     MensagemSucesso(retorno.Mensagem);
                     renderizarListaEquipamento();
-                $('#modal-cadastrar-editar-equipamento-partial').modal('hide');
+                    fecharModal('#modal-cadastrar-editar-equipamento-partial');
                 }
                 else {
                     aplicaErro(retorno.Mensagem, $('#frmEquipamento'));
@@ -141,14 +141,31 @@
             });
     });
 
+    $(document).on('click', '.pagina', function () {
+        var pagina = $(this).data('pagina');
+        renderizarListaEquipamento(pagina);
+    });
+
 });
 
-function renderizarListaEquipamento() {
-    var codigoArea = $('#codigoArea').val();
+function renderizarListaEquipamento(pagina = $('#paginaAtual').val()) {
+    var qtdePaginas = $('#qtdePaginas').val();
+
+    if (pagina < 1) {
+        pagina = 1;
+    }
+
+    if (pagina > qtdePaginas) {
+        pagina = qtdePaginas;
+    }
 
     $.ajax({
         type: 'GET',
-        url: `/Equipamento/RenderizarListaEquipamento?CodigoArea=${codigoArea}`,
+        url: '/Equipamento/RenderizarListaEquipamento',
+        data: {
+            codigoArea: $('#codigoArea').val(),
+            pagina
+        },
         success: function (retorno) {
             $('#lista-equipamento-partial').html(retorno);
         },

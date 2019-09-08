@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using MonitoramentoSensores.Models;
 
 namespace MonitoramentoSensores.Controllers
 {
@@ -16,6 +17,7 @@ namespace MonitoramentoSensores.Controllers
         private IAreaBLL _areaBLL;
         private IEquipamentoBLL _equipamentoBLL;
         private ISensorBLL _sensorBLL;
+        private int _itensPorPagina = 5;
 
         public SensorController(IPlantaBLL plantaBLL, IAreaBLL areaBLL, IEquipamentoBLL equipamentoBLL, ISensorBLL sensorBLL)
         {
@@ -25,23 +27,38 @@ namespace MonitoramentoSensores.Controllers
             _sensorBLL = sensorBLL;
         }
 
-        public async Task<ActionResult> Index(int codigoEquipamento)
+        public async Task<ActionResult> Index(int codigoEquipamento, int pagina = 1)
         {
             var equipamento = new EquipamentoModel(await _equipamentoBLL.RetornarEquipamentoAsync(codigoEquipamento));
 
             equipamento.Area = new AreaModel(await _areaBLL.RetornarAreaAsync(equipamento.CodigoArea));
             equipamento.Area.Planta = new PlantaModel(await _plantaBLL.RetornarPlantaAsync(equipamento.Area.CodigoPlanta));
 
-            equipamento.ListaSensor = (await _sensorBLL.ListarSensorAsync(codigoEquipamento)).Select(v => new SensorModel(v)).ToList();
-            
+            var paginacaoSensorMod = await _sensorBLL.ListarSensorPaginadoAsync(codigoEquipamento, pagina, _itensPorPagina);
+
+            equipamento.PaginacaoSensor = new PaginacaoModel<SensorModel>
+            {
+                Pagina = paginacaoSensorMod.Pagina,
+                QtdePaginas = paginacaoSensorMod.QtdePaginas,
+                ItensPorPagina = paginacaoSensorMod.ItensPorPagina,
+                Lista = paginacaoSensorMod.Lista.Select(s => new SensorModel(s)).ToList()
+            };
+
             return View(equipamento);
         }
 
-        public async Task<ActionResult> RenderizarListaSensor(int codigoEquipamento)
+        public async Task<ActionResult> RenderizarListaSensor(int codigoEquipamento, int pagina = 1)
         {
-            var listaSensor = (await _sensorBLL.ListarSensorAsync(codigoEquipamento)).Select(v => new SensorModel(v)).ToList();
-            
-            return PartialView("_ListaSensorPartial", listaSensor);
+            var paginacaoSensorMod = await _sensorBLL.ListarSensorPaginadoAsync(codigoEquipamento, pagina, _itensPorPagina);
+
+            var paginacaoSensor = new PaginacaoModel<SensorModel>
+            {
+                Pagina = paginacaoSensorMod.Pagina,
+                QtdePaginas = paginacaoSensorMod.QtdePaginas,
+                ItensPorPagina = paginacaoSensorMod.ItensPorPagina,
+                Lista = paginacaoSensorMod.Lista.Select(s => new SensorModel(s)).ToList()
+            };
+            return PartialView("_ListaSensorPartial", paginacaoSensor);
         }
 
         [HttpPost]

@@ -1,8 +1,8 @@
-﻿@model List<MonitoramentoSensores.Models.Planta.PlantaModel>
+﻿@model MonitoramentoSensores.Models.PaginacaoModel<MonitoramentoSensores.Models.Planta.PlantaModel>
 
 <main>
     <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
-    <div class="row">
+    <div class="row espacamento-superior">
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
@@ -31,8 +31,6 @@
 }
 
 @section Scripts{
-    <script src="~/Scripts/Padrao/modalpadrao.js"></script>
-    <script src="~/Scripts/Padrao/scripts.js"></script>
     <script src="~/Scripts/Planta/planta.js"></script>
 }
 

@@ -9,7 +9,7 @@
             url: `/Visualizacao/DetalhesEquipamento?codigoEquipamento=${codigoEquipamento}`,
             success: function (retorno) {
                 $('#modal-equipamento-detalhes-partial').html(retorno);
-                $('#modal-equipamento-detalhes').modal('show');
+                abrirModal('#modal-equipamento-detalhes');
             },
             error: function () {
                 MensagemErroPersonalizada('Ocorreu um erro ao retornar detalhes do equipamento')

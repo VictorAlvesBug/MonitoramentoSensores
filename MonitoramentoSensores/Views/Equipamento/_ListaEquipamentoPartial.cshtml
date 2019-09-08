@@ -1,23 +1,26 @@
-﻿@model List<MonitoramentoSensores.Models.Equipamento.EquipamentoModel>
+﻿@model MonitoramentoSensores.Models.PaginacaoModel<MonitoramentoSensores.Models.Equipamento.EquipamentoModel>
 
-@if (Model.Any())
+<input type="hidden" id="paginaAtual" value="@Model.Pagina" />
+<input type="hidden" id="qtdePaginas" value="@Model.QtdePaginas" />
+
+@if (Model.Lista.Any())
 {
     <div class="col-md-12">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th class="text-center">Ações</th>
+                    <th style="width:80%;">Nome</th>
+                    <th style="width:20%;" class="text-center">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var equipamento in Model)
+                @foreach (var equipamento in Model.Lista)
                 {
                     <tr>
                         <td>@equipamento.Nome</td>
                         <td class="text-center">
                             <a class="fa fa-copy js-duplicar-equipamento margin" data-codigo="@equipamento.Codigo" data-nome="@equipamento.Nome" data-toggle="tooltip" data-placement="top" title="" data-original-title="Duplicar"></a>
-                            <a class="fa fa-plus margin" href="/Sensor/Index?codigoEquipamento=@equipamento.Codigo"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Visualizar"></a>
+                            <a class="fa fa-plus margin" href="/Sensor/Index?codigoEquipamento=@equipamento.Codigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Visualizar"></a>
                             <a class="fa fa-edit js-modal-editar-equipamento margin" data-codigo="@equipamento.Codigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
                             <a class="fa fa-times js-excluir-equipamento margin" data-codigo="@equipamento.Codigo" data-nome="@equipamento.Nome" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"></a>
                         </td>
@@ -27,6 +30,7 @@
             </tbody>
         </table>
     </div>
+    @Trinity.Paginacao(Model.Pagina, Model.QtdePaginas)
 }
 else
 {

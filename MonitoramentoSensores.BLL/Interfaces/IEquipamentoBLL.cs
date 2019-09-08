@@ -15,5 +15,6 @@ namespace MonitoramentoSensores.BLL.Interfaces
         Task<bool> EditarEquipamentoAsync(EquipamentoMOD equipamento);
         Task<bool> ExcluirEquipamentoAsync(int codigo);
         Task<bool> DuplicarEquipamentoAsync(int codigo);
+        Task<PaginacaoMOD<EquipamentoMOD>> ListarEquipamentoPaginadoAsync(int codigoArea, int pagina, int itensPorPagina);
     }
 }

@@ -94,5 +94,19 @@ namespace MonitoramentoSensores.BLL
 
             return true;
         }
+
+        public async Task<PaginacaoMOD<PlantaMOD>> ListarPlantaPaginadaAsync(int pagina, int itensPorPagina)
+        {
+            var qtdePaginas = await _plantaDAL.RetornarQuantidadePaginaPlantaAsync(itensPorPagina);
+            pagina = Math.Min(pagina, qtdePaginas);
+
+            return new PaginacaoMOD<PlantaMOD>
+            {
+                Pagina = pagina,
+                QtdePaginas = qtdePaginas,
+                ItensPorPagina = itensPorPagina,
+                Lista = await _plantaDAL.ListarPlantaAsync(pagina, itensPorPagina)
+            };
+        }
     }
 }

@@ -12,7 +12,7 @@
 
         $('.aviso').hide();
 
-        $('#modal-cadastrar-editar-sensor-partial').modal('show');
+        abrirModal('#modal-cadastrar-editar-sensor-partial');
     });
 
     $(document).on('click', '.js-cadastrar-sensor', function () {
@@ -28,7 +28,7 @@
                 if (retorno.Sucesso) {
                     MensagemSucesso(retorno.Mensagem);
                     renderizarListaSensor();
-                    $('#modal-cadastrar-editar-sensor-partial').modal('hide');
+                    fecharModal('#modal-cadastrar-editar-sensor-partial');
                 }
                 else {
                     aplicaErro(retorno.Mensagem, $('#frmSensor'));
@@ -59,7 +59,7 @@
 
                 $('.aviso').hide();
 
-                $('#modal-cadastrar-editar-sensor-partial').modal('show');
+                abrirModal('#modal-cadastrar-editar-sensor-partial');
             },
             error: function () {
                 MensagemErroPersonalizada('Ocorreu um erro ao retornar sensor');
@@ -81,7 +81,7 @@
                 if (retorno.Sucesso) {
                     MensagemSucesso(retorno.Mensagem);
                     renderizarListaSensor();
-                    $('#modal-cadastrar-editar-sensor-partial').modal('hide');
+                    fecharModal('#modal-cadastrar-editar-sensor-partial');
                 }
                 else {
                     aplicaErro(retorno.Mensagem, $('#frmSensor'));
@@ -147,14 +147,31 @@
             });
     });
 
+    $(document).on('click', '.pagina', function () {
+        var pagina = $(this).data('pagina');
+        renderizarListaSensor(pagina);
+    });
+
 });
 
-function renderizarListaSensor() {
-    var codigoEquipamento = $('#codigoEquipamento').val();
+function renderizarListaSensor(pagina = $('#paginaAtual').val()) {
+    var qtdePaginas = $('#qtdePaginas').val();
+
+    if (pagina < 1) {
+        pagina = 1;
+    }
+
+    if (pagina > qtdePaginas) {
+        pagina = qtdePaginas;
+    }
 
     $.ajax({
         type: 'GET',
-        url: `/Sensor/RenderizarListaSensor?CodigoEquipamento=${codigoEquipamento}`,
+        url: '/Sensor/RenderizarListaSensor',
+        data: {
+            codigoEquipamento: $('#codigoEquipamento').val(),
+            pagina
+        },
         success: function (retorno) {
             $('#lista-sensor-partial').html(retorno);
         },

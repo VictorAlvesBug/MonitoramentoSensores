@@ -15,5 +15,6 @@ namespace MonitoramentoSensores.BLL.Interfaces
         Task<bool> EditarSensorAsync(SensorMOD sensor);
         Task<bool> ExcluirSensorAsync(int codigo);
         Task<bool> DuplicarSensorAsync(int codigo);
+        Task<PaginacaoMOD<SensorMOD>> ListarSensorPaginadoAsync(int codigoEquipamento, int pagina, int itensPorPagina);
     }
 }

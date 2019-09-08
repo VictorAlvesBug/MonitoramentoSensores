@@ -15,5 +15,6 @@ namespace MonitoramentoSensores.BLL.Interfaces
         Task<bool> EditarPlantaAsync(PlantaMOD planta);
         Task<bool> ExcluirPlantaAsync(int codigo);
         Task<bool> DuplicarPlantaAsync(int codigo);
+        Task<PaginacaoMOD<PlantaMOD>> ListarPlantaPaginadaAsync(int pagina, int itensPorPagina);
     }
 }

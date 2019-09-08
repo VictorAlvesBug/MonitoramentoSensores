@@ -123,5 +123,56 @@ namespace MonitoramentoSensores.DAL
                 return await connection.QueryFirstOrDefaultAsync<int>(insert, planta);
             }
         }
+
+        public async Task<int> RetornarQuantidadePaginaPlantaAsync(int itensPorPagina)
+        {
+            using (var connection = ConnectionFactory.GetConnection("MyDatabase"))
+            {
+                #region COUNT
+                const string count = @"
+                                    SELECT 
+                                        CEILING(
+                                            (
+                                                SELECT
+                                                    COUNT(*)
+                                                FROM
+                                                    MSPlanta
+                                                WHERE
+                                                    Ativo = 1
+                                            )
+                                        /CONVERT(FLOAT, @itensPorPagina))";
+                #endregion
+
+                return (await connection.QueryFirstOrDefaultAsync<int>(count, new { itensPorPagina }));
+            }
+        }
+
+        public async Task<List<PlantaMOD>> ListarPlantaAsync(int pagina, int itensPorPagina)
+        {
+            if (pagina < 1)
+                pagina = 1;
+
+            using (var connection = ConnectionFactory.GetConnection("MyDatabase"))
+            {
+                #region QUERY
+                const string query = @"
+                                    SELECT
+                                        *
+                                    FROM
+                                        MSPlanta
+                                    WHERE
+                                        Ativo = 1
+                                    ORDER BY 
+                                        Nome
+                                    OFFSET
+                                        (@pagina-1) * @itensPorPagina ROWS
+                                    FETCH NEXT
+                                        @itensPorPagina
+                                    ROWS ONLY";
+                #endregion
+
+                return (await connection.QueryAsync<PlantaMOD>(query, new { pagina, itensPorPagina })).ToList();
+            }
+        }
     }
 }

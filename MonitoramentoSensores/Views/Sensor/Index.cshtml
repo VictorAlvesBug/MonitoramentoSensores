@@ -2,7 +2,7 @@
 
 <main>
     <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
-    <div class="row">
+    <div class="row espacamento-superior">
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="box-body">
                     <div id="lista-sensor-partial">
-                        @Html.Partial("_ListaSensorPartial", Model.ListaSensor)
+                        @Html.Partial("_ListaSensorPartial", Model.PaginacaoSensor)
                     </div>
                 </div>
             </div>
@@ -49,8 +49,6 @@
 }
 
 @section Scripts{
-    <script src="~/Scripts/Padrao/modalpadrao.js"></script>
-    <script src="~/Scripts/Padrao/scripts.js"></script>
     <script src="~/Scripts/Sensor/sensor.js"></script>
 }
 

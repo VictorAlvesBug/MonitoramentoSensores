@@ -19,7 +19,7 @@ namespace MonitoramentoSensores.Controllers
         private IAreaBLL _areaBLL;
         private IEquipamentoBLL _equipamentoBLL;
         private ISensorBLL _sensorBLL;
-        private int _itensPorPagina = 1;
+        private int _itensPorPagina = 6;
 
         public VisualizacaoController(IPlantaBLL plantaBLL, IAreaBLL areaBLL, IEquipamentoBLL equipamentoBLL, ISensorBLL sensorBLL)
         {

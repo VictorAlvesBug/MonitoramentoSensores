@@ -25,17 +25,22 @@
                 nome,
                 senha
             },
+            beforeSend: function () {
+                document.querySelector('.loader-container').classList.add('mostrar');
+            },
             success: function (retorno) {
                 if (retorno.Sucesso) {
                     window.location.href = '/Planta/Index'
-                    MensagemSucesso(retorno.Mensagem);
                 }
                 else {
-                    aplicaErro(retorno.Mensagem, form);
+                    aplicaErro('Ocorreu um erro ao efetuar login', form);
                 }
             },
             error: function () {
                 aplicaErro('Ocorreu um erro ao efetuar login', form);
+            },
+            complete: function () {
+                document.querySelector('.loader-container').classList.remove('mostrar');
             }
         });
     });

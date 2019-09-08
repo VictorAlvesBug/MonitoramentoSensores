@@ -52,11 +52,6 @@ body {
     display:flex;
 }
 
-.box-subtitulo {
-    font: normal 16px 'Hepta Slab';
-    text-transform: uppercase;
-}
-
 .nenhum-registro {
     color: red;
     font: normal 14px 'Hepta Slab';
@@ -137,5 +132,6 @@ a {
 }
 
 .btn-voltar {
-    margin-top:20px;
+    margin-top: 20px;
+    margin-bottom: 90px;
 }

@@ -120,5 +120,58 @@ namespace MonitoramentoSensores.DAL
                 return (await connection.QueryAsync<SensorMOD>(query, new { codigoMSEquipamento })).ToList();
             }
         }
+
+        public async Task<int> RetornarQuantidadePaginaSensorAsync(int codigoEquipamento, int itensPorPagina)
+        {
+            using (var connection = ConnectionFactory.GetConnection("MyDatabase"))
+            {
+                #region COUNT
+                const string count = @"
+                                    SELECT 
+                                        CEILING(
+                                            (
+                                                SELECT
+                                                    COUNT(*)
+                                                FROM
+                                                    MSSensor
+                                                WHERE
+                                                    CodigoMSEquipamento = @codigoEquipamento
+                                                    AND Ativo = 1
+                                            )
+                                        /CONVERT(FLOAT, @itensPorPagina))";
+                #endregion
+
+                return (await connection.QueryFirstOrDefaultAsync<int>(count, new { codigoEquipamento, itensPorPagina }));
+            }
+        }
+
+        public async Task<List<SensorMOD>> ListarSensorAsync(int codigoEquipamento, int pagina, int itensPorPagina)
+        {
+            if (pagina < 1)
+                pagina = 1;
+
+            using (var connection = ConnectionFactory.GetConnection("MyDatabase"))
+            {
+                #region QUERY
+                const string query = @"
+                                    SELECT
+                                        *
+                                    FROM
+                                        MSSensor
+                                    WHERE
+                                        CodigoMSEquipamento = @codigoEquipamento
+                                        AND Ativo = 1
+                                    ORDER BY 
+                                        Ordem
+                                    OFFSET
+                                        (@pagina-1) * @itensPorPagina ROWS
+                                    FETCH NEXT
+                                        @itensPorPagina
+                                    ROWS ONLY";
+                #endregion
+
+                return (await connection.QueryAsync<SensorMOD>(query, new { codigoEquipamento, pagina, itensPorPagina })).ToList();
+            }
+        }
     }
 }

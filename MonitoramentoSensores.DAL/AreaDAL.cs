@@ -198,6 +198,9 @@ namespace MonitoramentoSensores.DAL
 
         public async Task<List<AreaMOD>> ListarAreaAsync(int codigoMSPlanta, int pagina, int itensPorPagina)
         {
+            if (pagina < 1)
+                pagina = 1;
+
             using (var connection = ConnectionFactory.GetConnection("MyDatabase"))
             {
                 #region QUERY

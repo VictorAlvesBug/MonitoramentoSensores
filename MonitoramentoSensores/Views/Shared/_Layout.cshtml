@@ -8,12 +8,23 @@
     <link href="~/Content/css/all.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/base.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Paginacao/paginacao.css" rel="stylesheet" /> 
     <link href="https://fonts.googleapis.com/css?family=Hepta+Slab|Share+Tech+Mono&display=swap" rel="stylesheet">
     @RenderSection("Styles", required: false)
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
+    <div class="loader-container">
+        <div class="loader">
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+            <div class="obj"></div>
+        </div>
+    </div>
+
     <div class="container body-content">
         <div class="row">
             <div class="header">
@@ -21,6 +32,8 @@
                     <img class="logo" src="~/Imagens/Braskem.png">
                     <p class="nome-sistema"> Real time monitoring system. </p>
                 </div>
+                <input type="hidden" id="nomeUsuario" value="@(Session["NomeUsuario"] ?? 0)" />
+
                 @if (Session["NomeUsuario"] != null)
                 {
                     <div class="login-dropdown">
@@ -46,6 +59,8 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Padrao/modalpadrao.js"></script>
+    <script src="~/Scripts/Padrao/scripts.js"></script>
     <script src="~/Scripts/base.js"></script>
     @RenderSection("Scripts", required: false)
 

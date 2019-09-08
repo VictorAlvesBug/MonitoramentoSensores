@@ -84,9 +84,13 @@ namespace MonitoramentoSensores.BLL
 
         public async Task<PaginacaoMOD<AreaMOD>> ListarAreaPaginadaAsync(int codigoPlanta, int pagina, int itensPorPagina)
         {
-            return new PaginacaoMOD<AreaMOD> {
+            var qtdePaginas = await _areaDAL.RetornarQuantidadePaginaAreaAsync(codigoPlanta, itensPorPagina);
+            pagina = Math.Min(pagina, qtdePaginas);
+
+            return new PaginacaoMOD<AreaMOD>
+            {
                 Pagina = pagina,
-                QtdePaginas = await _areaDAL.RetornarQuantidadePaginaAreaAsync(codigoPlanta, itensPorPagina),
+                QtdePaginas = qtdePaginas,
                 ItensPorPagina = itensPorPagina,
                 Lista = await _areaDAL.ListarAreaAsync(codigoPlanta, pagina, itensPorPagina)
             };

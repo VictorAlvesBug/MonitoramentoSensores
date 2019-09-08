@@ -2,7 +2,7 @@
 
 <main>
     <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
-    <div class="row">
+    <div class="row espacamento-superior">
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="box-body">
                     <div id="lista-area-partial">
-                        @Html.Partial("_ListaAreaPartial", Model.ListaArea)
+                        @Html.Partial("_ListaAreaPartial", Model.PaginacaoArea)
                     </div>
                 </div>
             </div>
@@ -44,8 +44,6 @@
 }
 
 @section Scripts{
-    <script src="~/Scripts/Padrao/modalpadrao.js"></script>
-    <script src="~/Scripts/Padrao/scripts.js"></script>
     <script src="~/Scripts/Area/area.js"></script>
 }
 

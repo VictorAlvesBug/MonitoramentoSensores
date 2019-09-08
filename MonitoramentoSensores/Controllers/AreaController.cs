@@ -17,7 +17,7 @@ namespace MonitoramentoSensores.Controllers
         private IAreaBLL _areaBLL;
         private IEquipamentoBLL _equipamentoBLL;
         private ISensorBLL _sensorBLL;
-        private int _itensPorPagina = 3;
+        private int _itensPorPagina = 5;
 
         public AreaController(IPlantaBLL plantaBLL, IAreaBLL areaBLL, IEquipamentoBLL equipamentoBLL, ISensorBLL sensorBLL)
         {
@@ -27,19 +27,36 @@ namespace MonitoramentoSensores.Controllers
             _sensorBLL = sensorBLL;
         }
 
-        public async Task<ActionResult> Index(int codigoPlanta)
+        public async Task<ActionResult> Index(int codigoPlanta, int pagina = 1)
         {
             var planta = new PlantaModel(await _plantaBLL.RetornarPlantaAsync(codigoPlanta));
-            planta.ListaArea = (await _areaBLL.ListarAreaAsync(codigoPlanta)).Select(p => new AreaModel(p)).ToList();
 
+            var paginacaoAreaMod = await _areaBLL.ListarAreaPaginadaAsync(codigoPlanta, pagina, _itensPorPagina);
+
+            planta.PaginacaoArea = new PaginacaoModel<AreaModel>
+            {
+                Pagina = paginacaoAreaMod.Pagina,
+                QtdePaginas = paginacaoAreaMod.QtdePaginas,
+                ItensPorPagina = paginacaoAreaMod.ItensPorPagina,
+                Lista = paginacaoAreaMod.Lista.Select(a => new AreaModel(a)).ToList()
+            };
+            
             return View(planta);
         }
 
-        public async Task<ActionResult> RenderizarListaArea(int codigoPlanta)
+        public async Task<ActionResult> RenderizarListaArea(int codigoPlanta, int pagina = 1)
         {
-            var listaArea = (await _areaBLL.ListarAreaAsync(codigoPlanta)).Select(p => new AreaModel(p)).ToList();
+            var paginacaoAreaMod = await _areaBLL.ListarAreaPaginadaAsync(codigoPlanta, pagina, _itensPorPagina);
 
-            return PartialView("_ListaAreaPartial", listaArea);
+            var paginacaoArea = new PaginacaoModel<AreaModel>
+            {
+                Pagina = paginacaoAreaMod.Pagina,
+                QtdePaginas = paginacaoAreaMod.QtdePaginas,
+                ItensPorPagina = paginacaoAreaMod.ItensPorPagina,
+                Lista = paginacaoAreaMod.Lista.Select(a => new AreaModel(a)).ToList()
+            };
+
+            return PartialView("_ListaAreaPartial", paginacaoArea);
         }
 
         [HttpPost]

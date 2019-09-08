@@ -25,6 +25,7 @@ namespace MonitoramentoSensores.Models.Area
         public bool Ativo { get; set; }
 
         public List<EquipamentoModel> ListaEquipamento { get; set; }
+        public PaginacaoModel<EquipamentoModel> PaginacaoEquipamento { get; set; }
 
         public AreaModel()
         { }

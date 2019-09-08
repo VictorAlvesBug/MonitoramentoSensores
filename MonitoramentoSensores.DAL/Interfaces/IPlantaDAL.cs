@@ -15,5 +15,7 @@ namespace MonitoramentoSensores.DAL.Interfaces
         Task<bool> EditarPlantaAsync(PlantaMOD planta);
         Task<bool> ExcluirPlantaAsync(int codigo);
         Task<int> CadastrarPlantaRetornarCodigoAsync(PlantaMOD planta);
+        Task<int> RetornarQuantidadePaginaPlantaAsync(int itensPorPagina);
+        Task<List<PlantaMOD>> ListarPlantaAsync(int pagina, int itensPorPagina);
     }
 }

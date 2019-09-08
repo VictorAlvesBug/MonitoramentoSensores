@@ -222,5 +222,58 @@ namespace MonitoramentoSensores.DAL
                 return await connection.QueryFirstOrDefaultAsync<int>(insert, equipamento);
             }
         }
+
+        public async Task<List<EquipamentoMOD>> ListarEquipamentoAsync(int codigoArea, int pagina, int itensPorPagina)
+        {
+            if (pagina < 1)
+                pagina = 1;
+
+            using (var connection = ConnectionFactory.GetConnection("MyDatabase"))
+            {
+                #region QUERY
+                const string query = @"
+                                    SELECT
+                                        *
+                                    FROM
+                                        MSEquipamento
+                                    WHERE
+                                        CodigoMSArea = @codigoArea
+                                        AND Ativo = 1
+                                    ORDER BY 
+                                        Ordem
+                                    OFFSET
+                                        (@pagina-1) * @itensPorPagina ROWS
+                                    FETCH NEXT
+                                        @itensPorPagina
+                                    ROWS ONLY";
+                #endregion
+
+                return (await connection.QueryAsync<EquipamentoMOD>(query, new { codigoArea, pagina, itensPorPagina })).ToList();
+            }
+        }
+
+        public async Task<int> RetornarQuantidadePaginaEquipamentoAsync(int codigoArea, int itensPorPagina)
+        {
+            using (var connection = ConnectionFactory.GetConnection("MyDatabase"))
+            {
+                #region COUNT
+                const string count = @"
+                                    SELECT 
+                                        CEILING(
+                                            (
+                                                SELECT
+                                                    COUNT(*)
+                                                FROM
+                                                    MSEquipamento
+                                                WHERE
+                                                    CodigoMSArea = @codigoArea
+                                                    AND Ativo = 1
+                                            )
+                                        /CONVERT(FLOAT, @itensPorPagina))";
+                #endregion
+
+                return (await connection.QueryFirstOrDefaultAsync<int>(count, new { codigoArea, itensPorPagina }));
+            }
+        }
     }
 }

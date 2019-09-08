@@ -11,7 +11,7 @@
 
         $('.aviso').hide();
 
-        $('#modal-cadastrar-editar-area-partial').modal('show');
+        abrirModal('#modal-cadastrar-editar-area-partial');
     });
 
     $(document).on('click', '.js-cadastrar-area', function () {
@@ -26,7 +26,7 @@
                 if (retorno.Sucesso) {
                     MensagemSucesso(retorno.Mensagem);
                     renderizarListaArea();
-                    $('#modal-cadastrar-editar-area-partial').modal('hide');
+                    fecharModal('#modal-cadastrar-editar-area-partial');
                 }
                 else {
                     aplicaErro(retorno.Mensagem, $('#frmArea'));
@@ -56,7 +56,7 @@
 
                 $('.aviso').hide();
 
-                $('#modal-cadastrar-editar-area-partial').modal('show');
+                abrirModal('#modal-cadastrar-editar-area-partial');
             },
             error: function () {
                 MensagemErroPersonalizada('Ocorreu um erro ao retornar área');
@@ -77,7 +77,7 @@
                 if (retorno.Sucesso) {
                     MensagemSucesso(retorno.Mensagem);
                     renderizarListaArea();
-                    $('#modal-cadastrar-editar-area-partial').modal('hide');
+                    fecharModal('#modal-cadastrar-editar-area-partial');
                 }
                 else {
                     aplicaErro(retorno.Mensagem, $('#frmArea'));
@@ -140,15 +140,32 @@
                 });
             });
     });
+    
+    $(document).on('click', '.pagina', function () {
+        var pagina = $(this).data('pagina');
+        renderizarListaArea(pagina);
+    });
 
 });
 
-function renderizarListaArea() {
-    var codigoPlanta = $('#codigoPlanta').val();
+function renderizarListaArea(pagina = $('#paginaAtual').val()) {
+    var qtdePaginas = $('#qtdePaginas').val();
+
+    if (pagina < 1) {
+        pagina = 1;
+    }
+
+    if (pagina > qtdePaginas) {
+        pagina = qtdePaginas;
+    }
 
     $.ajax({
         type: 'GET',
-        url: `/Area/RenderizarListaArea?CodigoPlanta=${codigoPlanta}`,
+        url: '/Area/RenderizarListaArea',
+        data: {
+            codigoPlanta: $('#codigoPlanta').val(),
+            pagina
+        },
         success: function (retorno) {
             $('#lista-area-partial').html(retorno);
         },

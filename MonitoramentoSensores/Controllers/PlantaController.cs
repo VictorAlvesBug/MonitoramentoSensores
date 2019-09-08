@@ -1,4 +1,5 @@
 ﻿using MonitoramentoSensores.BLL.Interfaces;
+using MonitoramentoSensores.Models;
 using MonitoramentoSensores.Models.Area;
 using MonitoramentoSensores.Models.Planta;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace MonitoramentoSensores.Controllers
         private IAreaBLL _areaBLL;
         private IEquipamentoBLL _equipamentoBLL;
         private ISensorBLL _sensorBLL;
-        
+        private int _itensPorPagina = 5;
+
+
         public PlantaController(IPlantaBLL plantaBLL, IAreaBLL areaBLL, IEquipamentoBLL equipamentoBLL, ISensorBLL sensorBLL)
         {
             _plantaBLL = plantaBLL;
@@ -22,18 +25,34 @@ namespace MonitoramentoSensores.Controllers
             _sensorBLL = sensorBLL;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pagina = 1)
         {
-            var listaPlanta = (await _plantaBLL.ListarPlantaAsync()).Select(p => new PlantaModel(p)).ToList();
+            var paginacaoPlantaMod = await _plantaBLL.ListarPlantaPaginadaAsync(pagina, _itensPorPagina);
 
-            return View(listaPlanta);
+            var paginacaoPlanta = new PaginacaoModel<PlantaModel>
+            {
+                Pagina = paginacaoPlantaMod.Pagina,
+                QtdePaginas = paginacaoPlantaMod.QtdePaginas,
+                ItensPorPagina = paginacaoPlantaMod.ItensPorPagina,
+                Lista = paginacaoPlantaMod.Lista.Select(p => new PlantaModel(p)).ToList()
+            };
+
+            return View(paginacaoPlanta);
         }
 
-        public async Task<ActionResult> RenderizarListaPlanta()
+        public async Task<ActionResult> RenderizarListaPlanta(int pagina = 1)
         {
-            var listaPlanta = (await _plantaBLL.ListarPlantaAsync()).Select(p => new PlantaModel(p)).ToList();
+            var paginacaoPlantaMod = await _plantaBLL.ListarPlantaPaginadaAsync(pagina, _itensPorPagina);
 
-            return PartialView("_ListaPlantaPartial", listaPlanta);
+            var paginacaoPlanta = new PaginacaoModel<PlantaModel>
+            {
+                Pagina = paginacaoPlantaMod.Pagina,
+                QtdePaginas = paginacaoPlantaMod.QtdePaginas,
+                ItensPorPagina = paginacaoPlantaMod.ItensPorPagina,
+                Lista = paginacaoPlantaMod.Lista.Select(p => new PlantaModel(p)).ToList()
+            };
+            
+            return PartialView("_ListaPlantaPartial", paginacaoPlanta);
         }
 
         [HttpPost]
