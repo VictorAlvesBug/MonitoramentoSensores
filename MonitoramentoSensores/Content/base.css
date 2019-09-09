@@ -246,7 +246,7 @@
 
 .footer {
     border-top: solid #46606C 5px;
-    height: 60px;
+    height: 50px;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -254,14 +254,15 @@
     background-image: linear-gradient(to right, #5bc3ed, #0066b4);
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 1px 0px 0px 0px;
+    padding: 1px 10px 0px 0px;
+    display: grid;
+    align-items: center;
 }
 
 .footer-info, .footer-copyright {
     font-family: Bahnschrift, 'Courier New', Courier, monospace;
     color: rgb(46, 59, 65);
     text-align: right;
-    padding: 5px 25px 0px 0px;
     margin: 0;
 }
 
@@ -274,3 +275,4 @@
     font-size: 12px;
     font-weight: normal;
 }
+

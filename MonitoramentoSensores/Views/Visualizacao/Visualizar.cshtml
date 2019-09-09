@@ -22,6 +22,8 @@
     {
         ListaSensor = new List<MonitoramentoSensores.Models.Sensor.SensorModel>()
     })
+        @Html.Partial("_ModalCadastrarEditarAreaPartial", new MonitoramentoSensores.Models.Area.AreaModel())
+
     </div>
 
 </main>
@@ -33,4 +35,5 @@
 
 @section Scripts{
     <script src="~/Scripts/Visualizacao/visualizacao.js"></script>
+    <script src="~/Scripts/Area/area.js"></script>
 }

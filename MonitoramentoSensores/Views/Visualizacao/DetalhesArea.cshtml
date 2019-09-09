@@ -1,0 +1,45 @@
+﻿@using MonitoramentoSensores.MOD
+
+@model MonitoramentoSensores.Models.Area.AreaModel
+
+<main>
+    <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
+    <div class="row area-containers">
+        @if (Model.ListaEquipamento.Any())
+        {
+            for (int e = 0; e < Model.ListaEquipamento.Count; e++)
+            {
+                var equipamento = Model.ListaEquipamento[e];
+
+                <div class="boxs">
+                    <div class="box-headers">
+                        Área&nbsp;@Model.Nome
+                    </div>
+                    <div class="box-bodys">
+                        @if (equipamento.ListaSensor.Any())
+                        {
+                            for (int s = 0; s < equipamento.ListaSensor.Count; s++)
+                            {
+                                var sensor = equipamento.ListaSensor[s];
+
+                                <div class="sensor-cards">
+                                    @sensor.Nome - @Enum.GetName(typeof(Status), sensor.Status)
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</main>
+
+@section Styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Visualizacao/visualizacao.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/Visualizacao/visualizacao.js"></script>
+    <script src="~/Scripts/Area/area.js"></script>
+}

@@ -1,10 +1,9 @@
 ﻿.paginacao {
-    margin: 20px auto;
+    margin: 20px auto 0px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 125px;
-
+    max-width: 160px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -16,8 +15,8 @@
 .pagina-anterior, .pagina-posterior {
     cursor: pointer;
     position: relative;
-    width: 15px;
-    height: 15px;
+    width: 30px;
+    height: 30px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -73,8 +72,8 @@
     }
 
 .num-pagina, .qtde-paginas {
+    width: 50px;
     height: 30px;
-    border-radius: 2px;
     padding-left: 20px;
     padding-right: 20px;
     font: normal 14px 'Hepta Slab';
@@ -83,12 +82,7 @@
 }
 
 .num-pagina {
-    padding-left: 20px;
-    border-right: 2px solid rgba(0, 102, 180, 0.7);
-}
-
-.qtde-paginas {
-    padding-right: 20px;
+    border-right: 1px solid rgba(0, 102, 180, 1);
 }
 
 /*.paginacao {

@@ -12,51 +12,44 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="codigo-equipamento" value="@Model.Codigo" />
-
-                @for (int indiceItemSensor = 0; indiceItemSensor < Model.ListaSensor.Count; indiceItemSensor++)
+                @if (Model.ListaSensor.Any())
                 {
-                    var sensor = Model.ListaSensor[indiceItemSensor];
 
                     <div class="row">
-                        <div class="col-md-12">
-                            @switch (sensor.Status)
-                            {
-                                case Status.Estavel:
-                                <span class="status status-estavel"></span>
-                                break;
+                        @for (int indiceItemSensor = 0; indiceItemSensor < Model.ListaSensor.Count; indiceItemSensor++)
+                        {
+                            var sensor = Model.ListaSensor[indiceItemSensor];
 
-                                case Status.Incomum:
-                                <span class="status status-incomum"></span>
-                                break;
+                            <div class="col-md-2">
+                                @switch (sensor.Status)
+                                {
+                                    case Status.Estavel:
+                                    <span class="status status-estavel"></span>
+                                    break;
 
-                                case Status.Critico:
-                                <span class="status status-critico"></span>
-                                break;
-                            }
-                            @sensor.Nome
-                        </div>
+                                    case Status.Incomum:
+                                    <span class="status status-incomum"></span>
+                                    break;
+
+                                    case Status.Critico:
+                                    <span class="status status-critico"></span>
+                                    break;
+                                }
+                                <span id="sensor-codigo-@sensor.Codigo" class="sensor-nome">
+                                    @sensor.Nome
+                                </span>
+                            </div>
+                        }
                     </div>
                 }
-                <div class="row">
-                    <div class="col-md-1">
-
-
+                else
+                {
+                    <div class="nenhum-registro">
+                        <i class="fa fa-times"></i>
+                        Nenhum sensor encontrado
                     </div>
-                </div>
-
-                @*
-                    <div class="row">
-                            <div class="col-md-12">
-                            <div id="lista-detalhes-sensor-partial">
-                                @Html.Partial("_ListaDetalhesSensorPartial", new List<MonitoramentoSensores.Models.Sensor.SensorModel())
-                            </div>
-                        </div>
-                    </div>
-                *@
+                }
             </div>
-            @*<div class="modal-footer">
-                    <a id="btn-acao-modal" class="btn btn-blue">Salvar</a>
-                </div>*@
         </div>
 
     </div>

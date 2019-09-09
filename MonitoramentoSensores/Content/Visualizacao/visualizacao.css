@@ -26,9 +26,16 @@
     padding-right: 5px;
 }
 
-.area-aba-icone {
+.icone-branco {
+    color: #fff !important;
     font-weight: 600;
-    color:#ddd !important;
+}
+
+.icones {
+    display:flex;
+    min-width: 35px;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .area-content {
@@ -37,7 +44,7 @@
     border: 1px solid #0066b4;
     border-radius: 5px;
     padding: 5px 10px;
-    height: 160px;
+    height: 115px;
 }
 
 .area-header {
@@ -55,7 +62,7 @@
 
 .equipamento-content {
     width: 100%;
-    height: 40px;
+    height: 30px;
     display: block;
     justify-content: center;
     align-items: center;
@@ -141,3 +148,51 @@
     .status.status-critico {
         background-color: red;
     }
+
+
+.dropdown {
+    display: flex;
+    justify-content: center;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    top: 30px;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 120px;
+    box-shadow: 0px 0px 8px 5px rgba(0,0,0,0.2), 0px -5px 16px 5px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.opcoes-area:after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom: 10px solid #f1f1f1;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 8px 0px;
+        text-align:center;
+        font-size: 12px; 
+        text-decoration: none;
+        display: block;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd
+        }
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}

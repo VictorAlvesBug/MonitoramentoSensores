@@ -1,17 +1,17 @@
 ﻿
 .background {
-    /*height: 786px;*/
     width: 100%;
+    height: 100%;
+    padding-top: 100px;
     background-image: url(~/Imagens/backgroundLogin.png);
     background-repeat: no-repeat;
     background-size: cover;
-    display: block;
+    display: flex;
     justify-content: center;
     align-items:center;
 }
 
 .login-background {
-    /*height: 360px;*/
     width: 340px;
     background-color: rgba(255, 255, 255, .64);
     margin:  30px auto;
@@ -28,37 +28,23 @@
 
 .login-input {
     display: block;
-    margin: 0 auto;
-    margin-top: 15px;
-    border-radius: 15px;
+    margin: 10px auto;
+    padding:10px;
+    border-radius: 5px;
     height: 35px;
     width: 205px;
-    text-align: center;
     font-size: 15px;
     font-family: Bahnschrift, 'Courier New', Courier, monospace;
     background-color: white;
 }
 
-.login-remember-password {
-    margin: 15px 5px 0px 145px;
-    height: 12px;
-    width: 12px;
-    float: left;
-}
-
-.login-remember-text {
-    padding-top: 5px;
-    font-size: 10px;
-    color: #46606C;
-    font-family: Bahnschrift, 'Courier New', Courier, monospace;
-}
-
 .btn-enter {
     height: 30px;
-    width: 150px;
-    margin-top: 40px;
-    color: #46606C;
-    background-color: rgb(83, 184, 235);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff !important;
+    background-color: #0066b4;
     border-radius: 12px;
     border: 1px solid grey;
     font-weight: bold;

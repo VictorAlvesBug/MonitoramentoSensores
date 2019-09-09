@@ -1,36 +1,26 @@
 ﻿@model MonitoramentoSensores.Models.Usuario.UsuarioModel
 
-    <main>
-        <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
-        <div class="row espacamento-superior">
-            <div class="col-md-12">
-
-                <div class="background">
-                    <div class="login-background">
-                        <h1 class="login-titulo">Sign In</h1>
-                        <form id="frmLogin">
-                            <div class="aviso aviso-danger" style="display:none;"></div>
-                            <input class="login-input login-nome" type="text" name="Login" id="Login" size="20" maxlength="50" placeholder="Login">
-                            <input class="login-input login-senha" type="password" name="Password" id="Password" size="20" maxlength="50" placeholder="Password">
-                            <input class="login-input login-remember-password" type="checkbox" name="Remember" id="Remember">
-                            <p class="login-remember-text">Remember my password.</p>
-                            <a class="login-input btn-enter">Enter</a>
-                            <p class="login-forgot-password">Forgot your password? <a href="naoExiste.html"><u>Click here.</u></a></p>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
+    <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
+    <div class="background">
+        <div class="login-background">
+            <h1 class="login-titulo">Login</h1>
+            <form id="frmLogin">
+                <div class="aviso aviso-danger" style="display:none;"></div>
+                <input class="login-input login-nome" type="text" name="Login" id="Login" size="20" maxlength="50" placeholder="Usuário">
+                <input class="login-input login-senha" type="password" name="Password" id="Password" size="20" maxlength="50" placeholder="Senha">
+                <a class="login-input btn-enter">Entrar</a>
+                <p class="login-forgot-password">Esqueceu sua senha? <a href="naoExiste.html"><u>Click aqui.</u></a></p>
+            </form>
         </div>
+    </div>
 
-    </main>
 
-    @section Styles{
-        <link href="~/Content/Site.css" rel="stylesheet" />
-        <link href="~/Content/Login/login.css" rel="stylesheet" />
-    }
+@section Styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Login/login.css" rel="stylesheet" />
+}
 
-    @section Scripts{
-        <script src="~/Scripts/Login/login.js"></script>
-    }
+@section Scripts{
+    <script src="~/Scripts/Login/login.js"></script>
+}
 

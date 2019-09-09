@@ -92,5 +92,19 @@ namespace MonitoramentoSensores.Controllers
 
             return PartialView("_ModalEquipamentoDetalhesPartial", equipamento);
         }
+
+        public async Task<ActionResult> DetalhesArea(int codigoArea)
+        {
+            var area = new AreaModel(await _areaBLL.RetornarAreaAsync(codigoArea));
+
+            area.ListaEquipamento = (await _equipamentoBLL.ListarEquipamentoAsync(codigoArea)).Select(e => new EquipamentoModel(e)).ToList();
+
+            foreach (var equipamento in area.ListaEquipamento)
+            {
+                equipamento.ListaSensor = (await _sensorBLL.ListarSensorAsync(equipamento.Codigo)).Select(s => new SensorModel(s)).ToList();
+            }
+
+            return View("DetalhesArea", area);
+        }
     }
 }

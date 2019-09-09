@@ -323,6 +323,8 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Visualizacao\_ModalEquipamentoDetalhesPartial.cshtml" />
     <Content Include="Views\Visualizacao\_ListaAreaPaginadaPartial.cshtml" />
+    <Content Include="Views\Visualizacao\_ModalCadastrarEditarAreaPartial.cshtml" />
+    <Content Include="Views\Visualizacao\DetalhesArea.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

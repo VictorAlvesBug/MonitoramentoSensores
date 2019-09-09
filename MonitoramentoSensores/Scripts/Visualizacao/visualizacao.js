@@ -20,23 +20,45 @@
 
     $(document).on('click', '.pagina', function () {
         var pagina = $(this).data('pagina');
-        var codigoPlanta = $('#codigoPlanta').val();
 
-        renderizarListaArea(codigoPlanta, pagina);
+        renderizarListaArea(pagina);
     });
 
 });
 
-function renderizarListaArea(codigoPlanta, pagina) {
-    var paginaAtual = $('#paginaAtual').val();
+function mostrarOpcoesArea(codigoArea) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+        }
+    }
+    document.getElementById(`opcoes-area-${codigoArea}`).classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+function renderizarListaArea(pagina = $('#paginaAtual').val()) {
     var qtdePaginas = $('#qtdePaginas').val();
 
-    if (pagina != paginaAtual && pagina >= 1 && pagina <= qtdePaginas) {
+    if (pagina >= 1 && pagina <= qtdePaginas) {
         $.ajax({
             type: 'GET',
             url: '/Visualizacao/RenderizarAreaPaginada',
             data: {
-                codigoPlanta,
+                codigoPlanta: $('#codigoPlanta').val(),
                 pagina
             },
             success: function (retorno) {

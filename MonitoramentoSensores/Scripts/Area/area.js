@@ -7,7 +7,7 @@
         $('#btn-acao-modal').addClass('js-cadastrar-area');
         $('#btn-acao-modal').removeClass('js-editar-area');
 
-        $('#titulo-modal').text('Cadastrar Área');
+        $('#modal-cadastrar-editar-area-partial').find('#titulo-modal').text('Cadastrar Área');
 
         $('.aviso').hide();
 
@@ -52,7 +52,7 @@
                 $('#btn-acao-modal').addClass('js-editar-area');
                 $('#btn-acao-modal').removeClass('js-cadastrar-area');
 
-                $('#titulo-modal').text('Editar Área');
+                $('#modal-cadastrar-editar-area-partial').find('#titulo-modal').text('Editar Área');
 
                 $('.aviso').hide();
 
@@ -148,7 +148,7 @@
 
 });
 
-function renderizarListaArea(pagina = $('#paginaAtual').val()) {
+/*function renderizarListaArea(pagina = $('#paginaAtual').val()) {
     var qtdePaginas = $('#qtdePaginas').val();
 
     if (pagina < 1) {
@@ -173,4 +173,4 @@ function renderizarListaArea(pagina = $('#paginaAtual').val()) {
             MensagemErroPersonalizada('Ocorreu um erro ao listar áreas');
         }
     });
-}
+}*/

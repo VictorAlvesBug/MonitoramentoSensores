@@ -31,7 +31,7 @@ body {
     background: #fff;
     border-radius: 3px;
     margin: 10px 20px;
-    padding: 20px 10px;
+    padding: 10px 10px 20px 10px;
     box-shadow: rgba(192,192,192,0.4) -2px -2px inset;
 }
 
@@ -132,6 +132,6 @@ a {
 }
 
 .btn-voltar {
-    margin-top: 20px;
-    margin-bottom: 90px;
+    margin-top: 10px;
+    margin-bottom: 60px;
 }
