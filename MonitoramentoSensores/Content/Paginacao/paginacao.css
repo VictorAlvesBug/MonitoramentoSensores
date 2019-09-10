@@ -22,23 +22,6 @@
     align-items:center;
 }
 
-    .pagina-anterior:after, .pagina-posterior:after {
-        content: '';
-        position: absolute;
-        width: 15px;
-        height: 2px;
-        background-color: #0066b4;
-        margin:auto 0;
-    }
-
-    .pagina-anterior:after {
-        left: 0;
-    }
-
-    .pagina-posterior:after {
-        right: 0;
-    }
-
     .pagina-anterior:before, .pagina-posterior:before {
         content: '';
         position: absolute;
@@ -60,10 +43,6 @@
 
     .pagina-anterior.disabled, .pagina-posterior.disabled {
         cursor: default;
-    }
-
-    .pagina-anterior.disabled:after, .pagina-posterior.disabled:after {
-        background-color: #aaa;
     }
 
     .pagina-anterior.disabled:before, .pagina-posterior.disabled:before {

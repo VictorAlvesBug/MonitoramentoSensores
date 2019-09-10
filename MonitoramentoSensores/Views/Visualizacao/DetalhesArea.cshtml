@@ -2,28 +2,45 @@
 
 @model MonitoramentoSensores.Models.Area.AreaModel
 
-<main>
+<main class="area-container">
     <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
-    <div class="row area-containers">
+    <div class="area-header">
+        Área&nbsp;<b>@Model.Nome</b>
+    </div>
+    <div class="area-body">
         @if (Model.ListaEquipamento.Any())
         {
             for (int e = 0; e < Model.ListaEquipamento.Count; e++)
             {
                 var equipamento = Model.ListaEquipamento[e];
 
-                <div class="boxs">
-                    <div class="box-headers">
-                        Área&nbsp;@Model.Nome
+                <div class="equipamento-container">
+                    <div class="equipamento-header">
+                        @equipamento.Nome
                     </div>
-                    <div class="box-bodys">
+                    <div class="equipamento-body">
                         @if (equipamento.ListaSensor.Any())
                         {
                             for (int s = 0; s < equipamento.ListaSensor.Count; s++)
                             {
                                 var sensor = equipamento.ListaSensor[s];
 
-                                <div class="sensor-cards">
-                                    @sensor.Nome - @Enum.GetName(typeof(Status), sensor.Status)
+                                <div class="sensor-card">
+                                    @switch (sensor.Status)
+                                    {
+                                        case Status.Estavel:
+                                        <div class="status status-green"></div>
+                                        break;
+
+                                        case Status.Incomum:
+                                        <div class="status status-yellow"></div>
+                                        break;
+
+                                        case Status.Critico:
+                                        <div class="status status-red"></div>
+                                        break;
+                                    }
+                                    &nbsp;&nbsp;<span>@sensor.Nome</span>
                                 </div>
                             }
                         }
@@ -36,7 +53,8 @@
 
 @section Styles{
     <link href="~/Content/Site.css" rel="stylesheet" />
-    <link href="~/Content/Visualizacao/visualizacao.css" rel="stylesheet" />
+    <link href="~/Content/Visualizacao/visualizacaoa.css" rel="stylesheet" />
+    <link href="~/Content/Visualizacao/detalhesArea.css" rel="stylesheet" />
 }
 
 @section Scripts{
