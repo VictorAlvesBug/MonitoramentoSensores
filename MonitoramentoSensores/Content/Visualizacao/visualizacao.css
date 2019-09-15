@@ -72,7 +72,7 @@
     width: 20px;
     height: 20px;
     margin: auto;
-    background-color: limegreen;
+    background-color: #0f0;
     border: 1px solid #000;
     border-radius: 50%;
 }
@@ -138,15 +138,15 @@
 }
 
     .status.status-estavel {
-        background-color: limegreen;
+        background-color: #0f0;
     }
 
     .status.status-incomum {
-        background-color: yellow;
+        background-color: #ff0;
     }
 
     .status.status-critico {
-        background-color: red;
+        background-color: #f00;
     }
 
 

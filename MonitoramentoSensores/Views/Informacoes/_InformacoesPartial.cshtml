@@ -1,0 +1,33 @@
+﻿@model MonitoramentoSensores.Models.InformacoesModel
+
+<div class="box">
+    <div class="box-header">
+        <div class="box-titulo box-titulo-info">
+            Você está em:
+        </div>
+    </div>
+    <div class="box-body box-body-info">
+        @if (!string.IsNullOrEmpty(Model.NomePlanta))
+        {
+            <div class="informacao">
+                <span><b>Planta:</b> @Model.NomePlanta</span>
+            </div>
+
+            if (!string.IsNullOrEmpty(Model.NomeArea))
+            {
+                <div class="informacao">
+                    <span><b>Área:</b> @Model.NomeArea</span>
+                </div>
+
+                if (!string.IsNullOrEmpty(Model.NomeEquipamento))
+                {
+                    <div class="informacao">
+                        <span><b>Equipamento:</b> @Model.NomeEquipamento</span>
+                    </div>
+                }
+            }
+
+        }
+
+    </div>
+</div>

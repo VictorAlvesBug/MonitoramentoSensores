@@ -53,6 +53,10 @@ window.onclick = function (event) {
 function renderizarListaArea(pagina = $('#paginaAtual').val()) {
     var qtdePaginas = $('#qtdePaginas').val();
 
+    if (pagina == null || pagina == undefined) {
+        pagina = 1;
+    }
+
     if (pagina >= 1 && pagina <= qtdePaginas) {
         $.ajax({
             type: 'GET',

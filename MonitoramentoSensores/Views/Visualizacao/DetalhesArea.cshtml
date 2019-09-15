@@ -2,54 +2,87 @@
 
 @model MonitoramentoSensores.Models.Area.AreaModel
 
-<main class="area-container">
-    <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
-    <div class="area-header">
-        Área&nbsp;<b>@Model.Nome</b>
-    </div>
-    <div class="area-body">
-        @if (Model.ListaEquipamento.Any())
-        {
-            for (int e = 0; e < Model.ListaEquipamento.Count; e++)
-            {
-                var equipamento = Model.ListaEquipamento[e];
 
-                <div class="equipamento-container">
-                    <div class="equipamento-header">
-                        @equipamento.Nome
-                    </div>
-                    <div class="equipamento-body">
-                        @if (equipamento.ListaSensor.Any())
-                        {
-                            for (int s = 0; s < equipamento.ListaSensor.Count; s++)
-                            {
-                                var sensor = equipamento.ListaSensor[s];
-
-                                <div class="sensor-card">
-                                    @switch (sensor.Status)
-                                    {
-                                        case Status.Estavel:
-                                        <div class="status status-green"></div>
-                                        break;
-
-                                        case Status.Incomum:
-                                        <div class="status status-yellow"></div>
-                                        break;
-
-                                        case Status.Critico:
-                                        <div class="status status-red"></div>
-                                        break;
-                                    }
-                                    &nbsp;&nbsp;<span>@sensor.Nome</span>
-                                </div>
-                            }
-                        }
-                    </div>
+<div class="row espacamento-superior">
+    <div class="col-md-12">
+        <div class="box">
+            <main class="area-container">
+                <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
+                <div class="area-header">
+                    Área&nbsp;<b>@Model.Nome</b>
                 </div>
-            }
-        }
+                <div class="area-body">
+                    @if (Model.ListaEquipamento.Any())
+                    {
+                        for (int e = 0; e < Model.ListaEquipamento.Count; e++)
+                        {
+                            var equipamento = Model.ListaEquipamento[e];
+                    <div class="equipamento">
+                        <div class="equipamento-header">
+                            <span class="equipamento-titulo">@equipamento.Nome</span>
+                        </div>
+                        <div class="equipamento-container">
+
+                            <div class="equipamento-body">
+                                @if (equipamento.ListaSensor.Any())
+                                {
+                                    for (int s = 0; s < equipamento.ListaSensor.Count; s++)
+                                    {
+                                        var sensor = equipamento.ListaSensor[s];
+
+                                        <div class="sensor-card">
+                                            @switch (sensor.Status)
+                                            {
+                                                case Status.Estavel:
+                                                <div class="status status-green"></div>
+                                                break;
+
+                                                case Status.Incomum:
+                                                <div class="status status-yellow"></div>
+                                                break;
+
+                                                case Status.Critico:
+                                                <div class="status status-red"></div>
+                                                break;
+                                            }
+                                            &nbsp;&nbsp;<span>@sensor.Nome</span>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="nenhum-registro">
+                                        <i class="fa fa-times"></i>
+                                        Nenhum sensor encontrado
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="nenhum-registro">
+                            <i class="fa fa-times"></i>
+                            Nenhum equipamento encontrado
+                        </div>
+                    }
+                </div>
+            </main>
+        </div>
     </div>
-</main>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <a class="btn btn-black btn-voltar" href="/Visualizacao/Index?codigoPlanta=@Model.CodigoPlanta">Voltar</a>
+    </div>
+</div>
+
+
+
+
 
 @section Styles{
     <link href="~/Content/Site.css" rel="stylesheet" />

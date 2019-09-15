@@ -3,7 +3,12 @@
 <main>
     <div id="alert-helper" class="pull-right" style="z-index: 999999999;"></div>
     <div class="row espacamento-superior">
-        <div class="col-md-12">
+        <div class="col-md-4">
+            @Html.Partial("../Informacoes/_InformacoesPartial", new MonitoramentoSensores.Models.InformacoesModel {
+           NomePlanta = Model.Nome
+            })
+        </div>
+        <div class="col-md-8">
             <div class="box">
                 <div class="box-header">
                     <div class="box-titulo">
@@ -11,7 +16,7 @@
                             <span>Planta:</span><b class="titulo-planta-nome"> @Model.Nome</b>
                         </div>
                         <div class="titulo-lista">
-                            Lista de Áreas
+                            Áreas
                         </div>
                     </div>
                     <div class="float-right">

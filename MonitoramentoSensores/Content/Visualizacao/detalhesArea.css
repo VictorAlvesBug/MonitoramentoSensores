@@ -1,45 +1,78 @@
 ﻿.area-container {
-    margin: 60px auto 0;
 }
 
 .area-header {
     font-size: 20px;
-    display: flex;
-    justify-content: center;
-    padding-top:10px;
+    padding: 10px;
+}
+
+.area-header .btn-voltar {
+    margin-bottom:10px;
 }
 
 .area-body {
     overflow-x: scroll;
     display: flex;
-    height: calc(100vh - 148px);
+    height: calc(100vh - 300px);
     -ms-flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+}
+
+.equipamento {
+    margin: 10px;
+}
+
+.equipamento-titulo {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: normal 14px 'Hepta Slab';
+}
+
+.equipamento-header {
+    /*font-weight: 700;
+    font-size: 17px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;*/
+    text-transform: uppercase;
+    margin: 10px auto 0 auto;
+    background-color: #0066b4;
+    color: #fff;
+    font-weight: lighter;
+    padding: 3px 7px;
+    border-radius: 5px 5px 0 0;
+    max-width: 100%;
+    position: relative;
+    border-bottom: 5px solid #0066b4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .equipamento-container {
-    background: #fff;
+    /*background: #fff;
     border-radius: 5px;
     margin: 10px;
     height: fit-content;
     padding: 10px 15px;
     min-width: 250px;
     width: 180px;
-    box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.2);
-}
-
-.equipamento-header {
-    font-weight: 700;
-    font-size: 17px;
-    padding-bottom: 5px;
-    display: flex;
-    justify-content:center;
+    box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.2);*/
+    position: relative;
+    background: #fff;
+    top: -5px;
+    border: 1px solid #0066b4;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
 
 .equipamento-body {
-    max-height: 100%;
-    overflow-y: scroll;
+    /*max-height: 100%;
+    overflow-y: scroll;*/
+    margin-top: 10px;
+    display: block;
+    justify-content: space-between;
+    min-width: 100%;
 }
 
 .sensor-card {
@@ -47,6 +80,13 @@
     align-items: center;
     margin: 5px;
 }
+
+    .sensor-card > span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font: normal 14px 'Hepta Slab';
+    }
 
 .status {
     width: 20px;

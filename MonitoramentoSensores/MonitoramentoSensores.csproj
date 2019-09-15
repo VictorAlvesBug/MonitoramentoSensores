@@ -279,7 +279,7 @@
     <Compile Include="Models\PaginacaoModel.cs" />
     <Compile Include="Models\Usuario\UsuarioModel.cs" />
     <Compile Include="Models\Planta\PlantaModel.cs" />
-    <Compile Include="Models\Planta\PlantaViewModel.cs" />
+    <Compile Include="Models\InformacoesModel.cs" />
     <Compile Include="Models\Sensor\SensorModel.cs" />
     <Compile Include="Models\Equipamento\EquipamentoModel.cs" />
     <Compile Include="Models\Equipamento\EquipamentoViewModel.cs" />
@@ -326,6 +326,7 @@
     <Content Include="Views\Visualizacao\_ListaAreaPaginadaPartial.cshtml" />
     <Content Include="Views\Visualizacao\_ModalCadastrarEditarAreaPartial.cshtml" />
     <Content Include="Views\Visualizacao\DetalhesArea.cshtml" />
+    <Content Include="Views\Informacoes\_InformacoesPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
