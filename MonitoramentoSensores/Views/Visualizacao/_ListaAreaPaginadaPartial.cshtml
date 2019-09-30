@@ -8,7 +8,10 @@
         <input type="hidden" id="qtdePaginas" value="@Model.PaginacaoArea.QtdePaginas" />
     </div>
     <div class="float-right">
-        <a class="btn btn-blue js-modal-cadastrar-area">Cadastrar Área</a>
+        @if (Session["NomeUsuario"]?.ToString() == "administrador")
+        {
+            <a class="btn btn-blue js-modal-cadastrar-area">Cadastrar Área</a>
+        }
     </div>
 </div>
 <div class="box-body espacamento-lateral">
@@ -30,9 +33,13 @@
                                     <a class="fa fa-bars icone-branco dropbtn" onclick="mostrarOpcoesArea(@area.Codigo)"></a>
                                     <div id="opcoes-area-@area.Codigo" class="dropdown-content opcoes-area">
                                         <a href="/Equipamento/Index?codigoArea=@area.Codigo">Equipamentos</a>
-                                        <a class="js-duplicar-area" data-codigo="@area.Codigo" data-nome="@area.Nome">Duplicar</a>
-                                        <a class="js-modal-editar-area" data-codigo="@area.Codigo">Editar</a>
-                                        <a class="js-excluir-area" data-codigo="@area.Codigo" data-nome="@area.Nome">Excluir</a>
+                                        @if (Session["NomeUsuario"]?.ToString() == "administrador")
+                                        {
+                                            <a class="js-duplicar-area" data-codigo="@area.Codigo" data-nome="@area.Nome">Duplicar</a>
+                                            <a class="js-modal-editar-area" data-codigo="@area.Codigo">Editar</a>
+                                            <a class="js-excluir-area" data-codigo="@area.Codigo" data-nome="@area.Nome">Excluir</a>
+                                        }
+
                                     </div>
                                 </div>
                             </div>

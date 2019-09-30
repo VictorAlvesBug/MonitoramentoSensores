@@ -9,22 +9,41 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th style="width:40%;">Nome</th>
-                    <th style="width:40%;">Endereço</th>
-                    <th style="width:20%;" class="text-center">Ações</th>
+                    @if (Session["NomeUsuario"]?.ToString() == "administrador")
+                    {
+                        <th style="width:40%;">Nome</th>
+                        <th style="width:40%;">Endereço</th>
+                        <th style="width:20%;" class="text-center">Ações</th>
+                    }
+                    else
+                    {
+                        <th style="width:50%;">Nome</th>
+                        <th style="width:50%;">Endereço</th>
+                    }
                 </tr>
             </thead>
             <tbody>
                 @foreach (var sensor in Model.Lista)
                 {
                     <tr>
-                        <td>@sensor.Nome</td>
-                        <td>@sensor.Endereco</td>
-                        <td class="text-center">
-                            <a class="fa fa-copy js-duplicar-sensor margin" data-codigo="@sensor.Codigo" data-nome="@sensor.Nome" data-endereco="@sensor.Endereco" data-toggle="tooltip" data-placement="top" title="" data-original-title="Duplicar"></a>
-                            <a class="fa fa-edit js-modal-editar-sensor margin" data-codigo="@sensor.Codigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
-                            <a class="fa fa-times js-excluir-sensor margin" data-codigo="@sensor.Codigo" data-nome="@sensor.Nome" data-endereco="@sensor.Endereco" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"></a>
-                        </td>
+                        @if (Session["NomeUsuario"]?.ToString() == "administrador")
+                        {
+                            <td>@sensor.Nome</td>
+                            <td>@sensor.Endereco</td>
+                            <td class="text-center">
+                                <a class="fa fa-copy js-duplicar-sensor margin" data-codigo="@sensor.Codigo" data-nome="@sensor.Nome" data-endereco="@sensor.Endereco" data-toggle="tooltip" data-placement="top" title="" data-original-title="Duplicar"></a>
+                                <a class="fa fa-edit js-modal-editar-sensor margin" data-codigo="@sensor.Codigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
+                                <a class="fa fa-times js-excluir-sensor margin" data-codigo="@sensor.Codigo" data-nome="@sensor.Nome" data-endereco="@sensor.Endereco" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"></a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>@sensor.Nome</td>
+                            <td>@sensor.Endereco</td>
+                        }
+
+
+
                     </tr>
                 }
 

@@ -17,7 +17,10 @@
                         Lista de Sensores
                     </div>
                     <div class="float-right">
+                        @if (Session["NomeUsuario"]?.ToString() == "administrador")
+                        {
                         <a class="btn btn-blue js-modal-cadastrar-sensor">Cadastrar</a>
+                        }
                     </div>
                     <input type="hidden" id="codigoEquipamento" value="@Model.Codigo" />
                 </div>

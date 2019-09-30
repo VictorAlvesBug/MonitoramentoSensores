@@ -19,10 +19,13 @@
                     <tr>
                         <td>@equipamento.Nome</td>
                         <td class="text-center">
-                            <a class="fa fa-copy js-duplicar-equipamento margin" data-codigo="@equipamento.Codigo" data-nome="@equipamento.Nome" data-toggle="tooltip" data-placement="top" title="" data-original-title="Duplicar"></a>
                             <a class="fa fa-plus margin" href="/Sensor/Index?codigoEquipamento=@equipamento.Codigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Visualizar"></a>
-                            <a class="fa fa-edit js-modal-editar-equipamento margin" data-codigo="@equipamento.Codigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
-                            <a class="fa fa-times js-excluir-equipamento margin" data-codigo="@equipamento.Codigo" data-nome="@equipamento.Nome" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"></a>
+                            @if (Session["NomeUsuario"]?.ToString() == "administrador")
+                            {
+                                <a class="fa fa-copy js-duplicar-equipamento margin" data-codigo="@equipamento.Codigo" data-nome="@equipamento.Nome" data-toggle="tooltip" data-placement="top" title="" data-original-title="Duplicar"></a>
+                                <a class="fa fa-edit js-modal-editar-equipamento margin" data-codigo="@equipamento.Codigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
+                                <a class="fa fa-times js-excluir-equipamento margin" data-codigo="@equipamento.Codigo" data-nome="@equipamento.Nome" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"></a>
+                            }
                         </td>
                     </tr>
                 }

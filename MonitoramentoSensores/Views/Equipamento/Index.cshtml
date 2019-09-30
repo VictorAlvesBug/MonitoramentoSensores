@@ -16,7 +16,10 @@
                             Lista de Equipamentos
                     </div>
                     <div class="float-right">
+                        @if (Session["NomeUsuario"]?.ToString() == "administrador")
+                        {
                         <a class="btn btn-blue js-modal-cadastrar-equipamento">Cadastrar</a>
+                        }
                     </div>
                     <input type="hidden" id="codigoArea" value="@Model.Codigo" />
                 </div>

@@ -11,7 +11,10 @@
                     </div>
                     <div class="float-right">
                         <a class="btn btn-blue js-reiniciar-simulacao">Reiniciar Simulação</a>
+                        @if (Session["NomeUsuario"]?.ToString() == "administrador")
+                        {
                         <a class="btn btn-blue js-modal-cadastrar-planta">Cadastrar</a>
+                        }
                     </div>
                 </div>
                 <div class="box-body">
