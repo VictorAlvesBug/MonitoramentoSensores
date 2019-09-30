@@ -18,7 +18,9 @@ namespace MonitoramentoSensores.DAL.ConnectionFactories
             //string server = WebConfigurationManager.AppSettings["MyServer"];
             //var connectionString = Environment.GetEnvironmentVariable("MyDB");
 
-            var connectionString = string.Format(@"Data Source=LAPTOP-1REIAA4J;Initial Catalog={0};Integrated Security=True;", database);
+            var connectionString = string.Format(@"Data Source=LAPTOP-1REIAA4J;
+                                                        Initial Catalog={0};
+                                                        Integrated Security=True;", database);
 
             return new SqlConnection(connectionString);
         }

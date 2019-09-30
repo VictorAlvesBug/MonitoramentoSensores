@@ -16,5 +16,6 @@ namespace MonitoramentoSensores.DAL.Interfaces
         Task<List<SensorMOD>> ListarSensorAsync(int codigoEquipamento);
         Task<int> RetornarQuantidadePaginaSensorAsync(int codigoEquipamento, int itensPorPagina);
         Task<List<SensorMOD>> ListarSensorAsync(int codigoEquipamento, int pagina, int itensPorPagina);
+        Task<bool> ReiniciarSimulacaoAsync();
     }
 }

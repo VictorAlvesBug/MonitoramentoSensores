@@ -170,6 +170,24 @@
         renderizarListaPlanta(pagina);
     });
 
+    $(document).on('click', '.js-reiniciar-simulacao', function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Visualizacao/ReiniciarSimulacao',
+            success: function (retorno) {
+                if (retorno.Sucesso) {
+                    MensagemSucesso(retorno.Mensagem);
+                }
+                else {
+                    MensagemErroPersonalizada(retorno.Mensagem);
+                }
+            },
+            error: function () {
+                MensagemErroPersonalizada('Ocorreu um erro ao reiniciar simulação');
+            },
+        })
+    });
+
 });
 
 function renderizarListaPlanta(pagina = $('#paginaAtual').val()) {

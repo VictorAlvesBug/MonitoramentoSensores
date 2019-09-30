@@ -23,7 +23,8 @@ namespace MonitoramentoSensores.Models.Sensor
         [Required(ErrorMessage = "Preencha o campo do nome")]
         public string Nome { get; set; }
 
-        public Status Status { get; set; }
+        //public Status Status { get; set; }
+        public int Status { get; set; }
 
         public int Ordem { get; set; }
 
@@ -38,6 +39,7 @@ namespace MonitoramentoSensores.Models.Sensor
             CodigoEquipamento = mod.CodigoMSEquipamento;
             Endereco = mod.Endereco;
             Nome = mod.Nome;
+            Status = mod.Status;
             Ordem = mod.Ordem;
             Ativo = mod.Ativo;
         }
@@ -50,6 +52,7 @@ namespace MonitoramentoSensores.Models.Sensor
                 CodigoMSEquipamento = CodigoEquipamento,
                 Endereco = Endereco,
                 Nome = Nome,
+                Status = Status,
                 Ordem = Ordem,
                 Ativo = Ativo
             };

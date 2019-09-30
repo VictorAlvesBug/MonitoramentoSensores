@@ -66,5 +66,10 @@ namespace MonitoramentoSensores.BLL
                 Lista = await _sensorDAL.ListarSensorAsync(codigoEquipamento, pagina, itensPorPagina)
             };
         }
+
+        public async Task<bool> ReiniciarSimulacaoAsync()
+        {
+            return await _sensorDAL.ReiniciarSimulacaoAsync();
+        }
     }
 }

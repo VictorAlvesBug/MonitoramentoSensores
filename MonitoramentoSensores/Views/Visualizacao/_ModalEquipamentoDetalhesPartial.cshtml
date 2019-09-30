@@ -23,15 +23,15 @@
                             <div class="col-md-2">
                                 @switch (sensor.Status)
                                 {
-                                    case Status.Estavel:
+                                    case 0/*Status.Estavel*/:
                                     <span class="status status-estavel"></span>
                                     break;
 
-                                    case Status.Incomum:
+                                    case 1/*Status.Incomum*/:
                                     <span class="status status-incomum"></span>
                                     break;
 
-                                    case Status.Critico:
+                                    case 2/*Status.Critico*/:
                                     <span class="status status-critico"></span>
                                     break;
                                 }

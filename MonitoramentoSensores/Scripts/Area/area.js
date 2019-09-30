@@ -140,11 +140,66 @@
                 });
             });
     });
-    
+
     $(document).on('click', '.pagina', function () {
         var pagina = $(this).data('pagina');
         renderizarListaArea(pagina);
     });
+
+    setInterval(renderizarStatusSensores, 2000);
+
+    function renderizarStatusSensores() {
+        let $areaBody = $('.area-body');
+
+        let $listaSensor = $areaBody.find('.sensor-card');
+
+        for (let i = 0; i < $listaSensor.length; i++) {
+            let $sensor = $listaSensor.eq(i);
+
+            let codigoSensor = $sensor.data('codigo-sensor');
+
+            let $status = $sensor.find('.status');
+
+            $.ajax({
+                type: 'GET',
+                url: `/Sensor/RetornarSensor?Codigo=${codigoSensor}`,
+
+                success: function (retorno) {
+                    switch (retorno.Sensor.Status) {
+                        case 0:
+                            $status.removeClass('status-green');
+                            $status.removeClass('status-yellow');
+                            $status.removeClass('status-red');
+
+                            $status.addClass('status-green');
+                            console.log(`${retorno.Sensor.Nome} --> VERDE`)
+                            break;
+
+                        case 1:
+                            $status.removeClass('status-green');
+                            $status.removeClass('status-yellow');
+                            $status.removeClass('status-red');
+
+                            $status.addClass('status-yellow');
+                            console.log(`${retorno.Sensor.Nome} --> AMARELO`)
+                            break;
+
+                        case 2:
+                            $status.removeClass('status-green');
+                            $status.removeClass('status-yellow');
+                            $status.removeClass('status-red');
+
+                            $status.addClass('status-red');
+                            console.log(`${retorno.Sensor.Nome} --> VERMELHO`)
+                            break;
+                    }
+                },
+                error: function () {
+                    MensagemErroPersonalizada('Ocorreu um erro ao atualizar status');
+                }
+            });
+        }
+    }
 
 });
 

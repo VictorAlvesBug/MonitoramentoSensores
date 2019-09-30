@@ -26,6 +26,7 @@ namespace MonitoramentoSensores.Models.Equipamento
 
         public List<SensorModel> ListaSensor { get; set; }
         public PaginacaoModel<SensorModel> PaginacaoSensor { get; set; }
+        public int Status { get; set; }
 
         public EquipamentoModel()
         { }

@@ -24,6 +24,57 @@
         renderizarListaArea(pagina);
     });
 
+    setInterval(renderizarStatusEquipamentos, 2000);
+
+    function renderizarStatusEquipamentos() {
+        let $boxBody = $('.box-body');
+
+        let $listaEquipamento = $boxBody.find('.equipamento-content');
+
+        for (let i = 0; i < $listaEquipamento.length; i++) {
+            let $equipamento = $listaEquipamento.eq(i);
+
+            let codigoEquipamento = $equipamento.data('codigo-equipamento');
+
+            let $status = $equipamento.find('.equipamento-status');
+
+            $.ajax({
+                type: 'GET',
+                url: `/Visualizacao/RetornarStatusEquipamentoAsync?Codigo=${codigoEquipamento}`,
+                success: function (retorno) {
+                    switch (retorno.Status) {
+                        case 0:
+                            $status.removeClass('equipamento-status-green');
+                            $status.removeClass('equipamento-status-yellow');
+                            $status.removeClass('equipamento-status-red');
+
+                            $status.addClass('equipamento-status-green');
+                            break;
+
+                        case 1:
+                            $status.removeClass('equipamento-status-green');
+                            $status.removeClass('equipamento-status-yellow');
+                            $status.removeClass('equipamento-status-red');
+
+                            $status.addClass('equipamento-status-yellow');
+                            break;
+
+                        case 2:
+                            $status.removeClass('equipamento-status-green');
+                            $status.removeClass('equipamento-status-yellow');
+                            $status.removeClass('equipamento-status-red');
+
+                            $status.addClass('equipamento-status-red');
+                            break;
+                    }
+                },
+                error: function () {
+                    MensagemErroPersonalizada('Ocorreu um erro ao atualizar status');
+                }
+            });
+        }
+    }
+
 });
 
 function mostrarOpcoesArea(codigoArea) {

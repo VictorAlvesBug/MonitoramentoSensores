@@ -46,11 +46,10 @@ namespace MonitoramentoSensores.Controllers
                 area.ListaEquipamento = (area.ListaEquipamento == null ? new List<EquipamentoModel>() : area.ListaEquipamento);
                 area.ListaEquipamento = (await _equipamentoBLL.ListarEquipamentoAsync(area.Codigo)).Select(e => new EquipamentoModel(e)).ToList();
 
-                /*foreach (var equipamento in area.ListaEquipamento)
+                foreach (var equipamento in area.ListaEquipamento)
                 {
-                    equipamento.ListaSensor = (equipamento.ListaSensor == null ? new List<SensorModel>() : equipamento.ListaSensor);
-                    equipamento.ListaSensor = (await _sensorBLL.ListarSensorAsync(equipamento.Codigo)).Select(s => new SensorModel(s)).ToList();
-                }*/
+                    equipamento.Status = await RetornarStatusEquipamento(equipamento.Codigo);
+                }
             }
 
             return View("Visualizar", planta);
@@ -73,16 +72,16 @@ namespace MonitoramentoSensores.Controllers
                 area.ListaEquipamento = (area.ListaEquipamento == null ? new List<EquipamentoModel>() : area.ListaEquipamento);
                 area.ListaEquipamento = (await _equipamentoBLL.ListarEquipamentoAsync(area.Codigo)).Select(e => new EquipamentoModel(e)).ToList();
 
-                /*foreach (var equipamento in area.ListaEquipamento)
+                foreach (var equipamento in area.ListaEquipamento)
                 {
-                    equipamento.ListaSensor = (equipamento.ListaSensor == null ? new List<SensorModel>() : equipamento.ListaSensor);
-                    equipamento.ListaSensor = (await _sensorBLL.ListarSensorAsync(equipamento.Codigo)).Select(s => new SensorModel(s)).ToList();
-                }*/
+                    equipamento.Status = await RetornarStatusEquipamento(equipamento.Codigo);
+                }
             }
 
             return PartialView("_ListaAreaPaginadaPartial", planta);
         }
 
+        //MODAL
         public async Task<ActionResult> DetalhesEquipamento(int codigoEquipamento)
         {
             var equipamento = new EquipamentoModel(await _equipamentoBLL.RetornarEquipamentoAsync(codigoEquipamento));
@@ -105,6 +104,49 @@ namespace MonitoramentoSensores.Controllers
             }
 
             return View("DetalhesArea", area);
+        }
+
+        public async Task<ActionResult> RetornarStatusEquipamentoAsync(int codigo)
+        {
+            return Json(new {
+                Status = await RetornarStatusEquipamento(codigo)
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<int> RetornarStatusEquipamento(int codigo)
+        {
+            var listaSensor = await _sensorBLL.ListarSensorAsync(codigo);
+
+            if (listaSensor.Count(s => s.Status == 2) > 0)//ALGUM SENSOR ESTA VERMELHO
+            {
+                return 2;
+            }
+            else if (listaSensor.Count(s => s.Status == 1) > 0)//ALGUM SENSOR ESTA AMARELO
+            {
+                return 1;
+            }
+            else//TODOS OS SENSORES ESTÃO VERDES
+            {
+                return 0;
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ReiniciarSimulacao()
+        {
+            if(await _sensorBLL.ReiniciarSimulacaoAsync())
+            {
+                return Json(new
+                {
+                    Sucesso = true,
+                    Mensagem = "Simulação reiniciada com sucesso"
+                });
+            }
+
+            return Json(new {
+                Sucesso = true,
+                Mensagem = "Simulação reiniciada com sucesso"
+            });
         }
     }
 }

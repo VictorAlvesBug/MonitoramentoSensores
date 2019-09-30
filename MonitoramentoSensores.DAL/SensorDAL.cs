@@ -47,7 +47,7 @@ namespace MonitoramentoSensores.DAL
 
                                     INSERT INTO
                                         MSSensor
-                                        (CodigoMSEquipamento, Nome, Endereco, Ordem, Ativo)
+                                        (CodigoMSEquipamento, Nome, Endereco, Ordem, Ativo, Status)
                                     VALUES
                                         (@CodigoMSEquipamento,
                                         @Nome, 
@@ -55,7 +55,7 @@ namespace MonitoramentoSensores.DAL
                                         (
                                             CASE WHEN @LastOrdem IS NOT NULL THEN @LastOrdem+1 ELSE 1 END
                                         ), 
-                                        1)";
+                                        1, 0)";
                 #endregion
 
                 return await connection.ExecuteAsync(insert, sensor) > 0;
@@ -171,6 +171,24 @@ namespace MonitoramentoSensores.DAL
                 #endregion
 
                 return (await connection.QueryAsync<SensorMOD>(query, new { codigoEquipamento, pagina, itensPorPagina })).ToList();
+            }
+        }
+
+        public async Task<bool> ReiniciarSimulacaoAsync()
+        {
+            using (var connection = ConnectionFactory.GetConnection("MyDatabase"))
+            {
+                #region UPDATE
+                const string update = @"
+                                    UPDATE 
+                                        MSSensor 
+                                    SET 
+                                        Status = 0
+                                    WHERE
+                                        Ativo = 1";
+                #endregion
+
+                return await connection.ExecuteAsync(update) > 0;
             }
         }
     }

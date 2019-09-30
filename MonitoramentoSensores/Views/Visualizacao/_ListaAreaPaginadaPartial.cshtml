@@ -30,9 +30,9 @@
                                     <a class="fa fa-bars icone-branco dropbtn" onclick="mostrarOpcoesArea(@area.Codigo)"></a>
                                     <div id="opcoes-area-@area.Codigo" class="dropdown-content opcoes-area">
                                         <a href="/Equipamento/Index?codigoArea=@area.Codigo">Equipamentos</a>
-                                        <a class="js-duplicar-area" data-codigo="@area.Codigo" data-nome="@area.Nome" >Duplicar</a>
+                                        <a class="js-duplicar-area" data-codigo="@area.Codigo" data-nome="@area.Nome">Duplicar</a>
                                         <a class="js-modal-editar-area" data-codigo="@area.Codigo">Editar</a>
-                                        <a class="js-excluir-area" data-codigo="@area.Codigo" data-nome="@area.Nome" >Excluir</a>
+                                        <a class="js-excluir-area" data-codigo="@area.Codigo" data-nome="@area.Nome">Excluir</a>
                                     </div>
                                 </div>
                             </div>
@@ -49,9 +49,24 @@
                                                 var equipamento = area.ListaEquipamento[indiceItemEquipamento];
 
                                                 <div class="col-sm-3 col-3">
-                                                    <div class="equipamento-content">
-                                                        <div class="equipamento-status js-modal-equipamento-detalhes" data-codigo-equipamento="@equipamento.Codigo" data-toggle="tooltip" title="@equipamento.Nome" data-placement="top">
-                                                        </div>
+                                                    <div class="equipamento-content" data-codigo-equipamento="@equipamento.Codigo">
+                                                        @switch (equipamento.Status)
+                                                        {
+                                                            case 0:
+                                                            <div class="equipamento-status-green equipamento-status js-modal-equipamento-detalhes-desativado" data-codigo-equipamento="@equipamento.Codigo" data-toggle="tooltip" title="@equipamento.Nome" data-placement="top">
+                                                            </div>
+                                                            break;
+
+                                                            case 1:
+                                                            <div class="equipamento-status-yellow equipamento-status js-modal-equipamento-detalhes-desativado" data-codigo-equipamento="@equipamento.Codigo" data-toggle="tooltip" title="@equipamento.Nome" data-placement="top">
+                                                            </div>
+                                                            break;
+
+                                                            case 2:
+                                                            <div class="equipamento-status-red equipamento-status js-modal-equipamento-detalhes-desativado" data-codigo-equipamento="@equipamento.Codigo" data-toggle="tooltip" title="@equipamento.Nome" data-placement="top">
+                                                            </div>
+                                                            break;
+                                                        }
                                                     </div>
                                                 </div>
                                             }
